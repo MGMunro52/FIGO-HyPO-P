@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="FIGO HyPO-P">
-<title>FIGO Ovulatory Disorders — HyPO-P v4.4</title>
+<title>FIGO Ovulatory Disorders — HyPO-P v4.5</title>
 <style>
 :root {
   --figo:#007A87;
@@ -809,7 +809,7 @@ input:focus-visible{
 }
 
 
-/* v4.4 PMOS gating + larger cropped HyPO-P header graphic */
+/* v4.5 PMOS gating + larger cropped HyPO-P header graphic */
 .hypop-logo-box{
   width:470px;
   height:190px;
@@ -865,7 +865,7 @@ input:focus-visible{
 }
 
 
-/* v4.4 mobile interaction reliability */
+/* v4.5 mobile interaction reliability */
 button, select, input { -webkit-tap-highlight-color: rgba(0,122,135,.14); }
 button { touch-action: manipulation; }
 .top-controls button,
@@ -905,7 +905,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 header graphic correction */
+/* v4.5 header graphic correction */
 .hypop-logo-box{
   width:460px;
   height:180px;
@@ -963,7 +963,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 mobile diagnostics + native View selector */
+/* v4.5 mobile diagnostics + native View selector */
 .mobile-view-control{display:none;}
 .interactive-status-wrap{
   max-width:1560px;
@@ -1042,7 +1042,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 use supplied cropped HyPO-P header graphic */
+/* v4.5 use supplied cropped HyPO-P header graphic */
 .hypop-logo-box{
   width:460px;
   height:180px;
@@ -1110,7 +1110,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 remove graphic container and align header marks */
+/* v4.5 remove graphic container and align header marks */
 .header-upper{
   align-items:flex-start !important;
 }
@@ -1181,7 +1181,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 conservative header recovery */
+/* v4.5 conservative header recovery */
 @media(min-width:1001px){
   .header-upper{
     display:flex !important;
@@ -1244,7 +1244,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 logo-faithful Level 1 shapes, with original highlighting preserved */
+/* v4.5 logo-faithful Level 1 shapes, with original highlighting preserved */
 .hypop-card{
   position:relative;
   min-height:94px;
@@ -1313,7 +1313,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 Orientation layer */
+/* v4.5 Orientation layer */
 .orientation-layer{
   min-height:100vh;
   padding:24px clamp(16px,4vw,54px) 30px;
@@ -1590,7 +1590,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 Orientation audience selector */
+/* v4.5 Orientation audience selector */
 .orientation-controls{
   display:flex;
   flex-direction:column;
@@ -1635,7 +1635,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 patient intro diagram nodes as right-pointing arrows */
+/* v4.5 patient intro diagram nodes as right-pointing arrows */
 .diagram-flow{
   gap:6px;
 }
@@ -1665,7 +1665,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 patient ovulation diagram: restore original node shapes */
+/* v4.5 patient ovulation diagram: restore original node shapes */
 .diagram-flow{
   gap:0 !important;
 }
@@ -1691,7 +1691,7 @@ button { touch-action: manipulation; }
   color:#64748b;
 }
 
-/* v4.4 Level 1 silhouettes: no rectangular surround; fine line follows pointed edge */
+/* v4.5 Level 1 silhouettes: no rectangular surround; fine line follows pointed edge */
 .hypop-bar{
   background:transparent !important;
 }
@@ -1745,7 +1745,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v4.4 — image-faithful orientation layer */
+/* v4.5 — image-faithful orientation layer */
 .orientation-layer{
   background:var(--figo) !important;
   color:#fff !important;
@@ -1953,6 +1953,44 @@ button { touch-action: manipulation; }
   }
 }
 
+
+/* v4.5 orientation GAIN-FIT-PIE behavior:
+   preserve the original artwork; mute only categories not represented for the selected Type. */
+.gain-orientation-row{
+  left:50.3% !important;
+  width:46.6% !important;
+  height:4.7% !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  opacity:0 !important;
+  transform:none !important;
+  pointer-events:none !important;
+}
+.gain-orientation-row.muted{
+  opacity:1 !important;
+  background:rgba(77,72,73,.67) !important;
+}
+/* Exact row bands referenced to the intact 1164×1318 source graphic. */
+.gh-g{top:14.5% !important;}
+.gh-a{top:18.7% !important;}
+.gh-i1{top:22.9% !important;}
+.gh-n{top:27.1% !important;}
+.gh-f{top:35.5% !important;}
+.gh-i2{top:39.7% !important;}
+.gh-t{top:43.9% !important;}
+.gh-p{top:52.3% !important;}
+.gh-i3{top:56.5% !important;}
+.gh-e{top:60.7% !important;}
+
+/* The source artwork itself remains untouched and scales as one unit on mobile. */
+@media(max-width:760px){
+  .gain-orientation-row{
+    height:4.9% !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2097,7 +2135,7 @@ button { touch-action: manipulation; }
 
 
 <main>
-<div class="notice" id="modeNotice">v4.4 exploratory layer. The audience selected on the orientation page is carried into this layer.</div>
+<div class="notice" id="modeNotice">v4.5 exploratory layer. The audience selected on the orientation page is carried into this layer.</div>
 
 
 <section id="ovScreen" class="ov-screen">
@@ -2359,8 +2397,10 @@ function renderOrientation(){
     btn.setAttribute("aria-pressed",on?"true":"false");
   });
   document.querySelectorAll(".gain-orientation-row").forEach(row=>{
-    const active=orientationOrgan && orientationActive[orientationOrgan].has(row.dataset.cat);
-    row.classList.toggle("lit",!!active);
+    const included=orientationOrgan && orientationActive[orientationOrgan].has(row.dataset.cat);
+    const muted=!!orientationOrgan && !included;
+    row.classList.toggle("muted",muted);
+    row.classList.remove("lit");
   });
 }
 document.querySelectorAll(".orientation-organ").forEach(btn=>{
