@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="FIGO HyPO-P">
-<title>FIGO Ovulatory Disorders — HyPO-P v6.6</title>
+<title>FIGO Ovulatory Disorders — HyPO-P v6.8</title>
 <style>
 :root {
   --figo:#007A87;
@@ -3967,7 +3967,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 contained schematic rebuild */
+/* v6.8 contained schematic rebuild */
 .physiology-body.contained-v60{
   display:grid;
   gap:14px;
@@ -4341,7 +4341,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 egg reservoir + egg–follicle sequence */
+/* v6.8 egg reservoir + egg–follicle sequence */
 .physiology-toolbar.v61{
   display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
 }
@@ -4504,7 +4504,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 fix: one FSH and one LH clearly produced by the pituitary */
+/* v6.8 fix: one FSH and one LH clearly produced by the pituitary */
 .gnrh-contained{
   position:relative;
   gap:4px;
@@ -4645,7 +4645,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6: hormones inside organs; arrows show release */
+/* v6.8: hormones inside organs; arrows show release */
 .hypothalamus-node.v63,
 .pituitary-node.v63{
   display:grid;
@@ -4801,7 +4801,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 refinements */
+/* v6.8 refinements */
 .organ-hormone-chip{
   font-size:12.5px !important;
   padding:5px 12px !important;
@@ -4904,7 +4904,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 restore 2-layer endometrium: basalis + functionalis */
+/* v6.8 restore 2-layer endometrium: basalis + functionalis */
 .contained-uterus .uterus-cavity{
   width:158px !important;
   height:94px !important;
@@ -5000,7 +5000,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.6 compact physiology + mobile popup explanation */
+/* v6.8 compact physiology + mobile popup explanation */
 .brain-compartment.v61{
   min-height:220px !important;
   padding:24px 12px 12px !important;
@@ -5234,6 +5234,348 @@ button { touch-action: manipulation; }
   .contained-uterus .uterus-cavity{
     width:128px !important;
     height:74px !important;
+  }
+}
+
+
+/* v6.8: much more compact graphic, true pituitary-origin outputs, visible explanations */
+
+/* true visible ports from pituitary */
+.pituitary-node.v67{ position:relative; overflow:visible !important; }
+.pit-port{
+  position:absolute;
+  right:-18px;
+  width:18px;
+  height:2px;
+  background:#90A8B0;
+  border-radius:999px;
+}
+.pit-port-fsh{ top:62%; }
+.pit-port-lh{ top:78%; }
+
+/* desktop/laptop: compact graphic full-width, explanation directly below */
+@media(min-width:861px){
+  .physiology-layout.v61{
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+  }
+  .phys-stage-card.v61{
+    padding:8px !important;
+  }
+  .physiology-detail-card.v61{
+    position:static !important;
+    display:block !important;
+    max-height:none !important;
+    width:100% !important;
+    margin:0 !important;
+    padding:10px 12px !important;
+    border-radius:14px !important;
+  }
+  .physiology-detail-card.v61 h3{
+    margin:3px 0 5px !important;
+    font-size:15px !important;
+  }
+  .physiology-detail-card.v61 p,
+  .physiology-detail-card.v61 li{
+    font-size:11px !important;
+    line-height:1.35 !important;
+  }
+
+  .contained-stage.v61{
+    grid-template-columns:125px 105px 225px 135px 170px !important;
+    grid-template-rows:auto !important;
+    gap:6px !important;
+    align-items:center !important;
+  }
+
+  .brain-compartment.v61{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    min-height:138px !important;
+    padding:20px 7px 7px !important;
+    border-radius:20px !important;
+  }
+  .brain-node{
+    min-height:36px !important;
+    padding:4px !important;
+    border-radius:10px !important;
+  }
+  .brain-node strong{ font-size:10px !important; }
+  .organ-hormone-chip{
+    font-size:9px !important;
+    padding:2px 6px !important;
+  }
+  .gnrh-path.v63{
+    min-height:27px !important;
+    gap:0 !important;
+  }
+  .gnrh-path.v63 .path-label{
+    font-size:8.5px !important;
+  }
+  .gnrh-path.v63 .contained-arrow{
+    font-size:18px !important;
+  }
+
+  .pituitary-output-zone.v63{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    padding-top:73px !important;
+    gap:0 !important;
+    align-self:stretch !important;
+  }
+  .pit-release-lane{
+    min-height:28px !important;
+    grid-template-columns:1fr auto auto auto !important;
+    gap:3px !important;
+    padding:0 !important;
+  }
+  .pit-release-lane::before{ display:none !important; }
+  .release-line{
+    height:2px !important;
+    min-width:18px !important;
+  }
+  .release-arrow{ font-size:18px !important; }
+  .pit-target-label{ font-size:8px !important; }
+  .pit-lh-state{
+    font-size:7.5px !important;
+    padding:1px 3px !important;
+  }
+
+  .ovary-compartment.v61{
+    grid-column:3 !important;
+    grid-row:1 !important;
+    min-height:285px !important;
+    padding:22px 12px 10px !important;
+    border-radius:34% 42% 40% 44% / 34% 40% 46% 50% !important;
+  }
+  .egg-reservoir{ width:70% !important; }
+  .reservoir-title,.recruitment-caption{ font-size:8px !important; }
+  .egg-dot{ width:9px !important; height:9px !important; }
+  .egg-dot.selected-egg{ width:11px !important; height:11px !important; }
+  .ovarian-structure.v61{
+    width:58% !important;
+    padding:4px 5px !important;
+  }
+  .ovarian-function{
+    width:38% !important;
+    padding:4px 5px !important;
+  }
+  .ovarian-structure strong,.ovarian-function strong{font-size:9.5px !important;}
+  .ovarian-caption{font-size:7.6px !important;}
+  .follicle-unit{width:30px !important;height:30px !important;margin:3px auto 1px !important;}
+  .follicle-ring{width:30px !important;height:30px !important;}
+  .follicle-egg{width:9px !important;height:9px !important;}
+  .branch-label{font-size:7.5px !important;padding:2px 5px !important;}
+
+  .ovarian-output-zone.v61{
+    grid-column:4 !important;
+    grid-row:1 !important;
+    padding:6px !important;
+    gap:5px !important;
+    align-self:center !important;
+  }
+  .ovarian-output{gap:3px !important;}
+  .output-source{font-size:8px !important;}
+  .output-pill{font-size:8.5px !important;padding:3px 6px !important;}
+  .output-arrow{font-size:12px !important;}
+
+  .contained-uterus.v61{
+    grid-column:5 !important;
+    grid-row:1 !important;
+    width:100% !important;
+    padding:22px 8px 8px !important;
+    border-radius:18px !important;
+    align-self:center !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:122px !important;
+    height:68px !important;
+  }
+  .endometrium-stack{ width:84px !important; }
+  .endo-phase-label{font-size:8.5px !important;}
+  .uterus-response-label{font-size:7.8px !important; line-height:1.2 !important;}
+}
+
+/* phone/tablet: keep compact stacked graphic + fixed explanation popup */
+@media(max-width:860px){
+  .brain-compartment.v61{
+    min-height:150px !important;
+    max-width:280px !important;
+  }
+  .brain-node{
+    min-height:40px !important;
+    padding:4px !important;
+  }
+  .ovary-compartment.v61{
+    max-width:300px !important;
+    padding:22px 13px 12px !important;
+  }
+  .ovarian-structure.v61{width:56% !important;}
+  .ovarian-function{width:38% !important;}
+  .contained-uterus.v61,
+  .ovarian-output-zone.v61{
+    max-width:300px !important;
+  }
+  .phys-mobile-popup{
+    max-height:42vh !important;
+    bottom:8px !important;
+  }
+}
+
+
+/* v6.8: FSH/LH arrows literally emanate from the hormone chips inside the pituitary */
+.pituitary-node.v68{
+  position:relative;
+  overflow:visible !important;
+  z-index:20;
+}
+.pituitary-origin-stack{
+  display:grid;
+  gap:6px;
+  width:100%;
+  overflow:visible;
+}
+.pituitary-origin-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 70px auto auto;
+  gap:4px;
+  align-items:center;
+  overflow:visible;
+  white-space:nowrap;
+}
+.pituitary-origin-row .organ-hormone-chip{
+  justify-self:end;
+  position:relative;
+  z-index:2;
+}
+.hormone-origin-arrow{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:0;
+  min-width:70px;
+  margin-left:-2px;
+}
+.hormone-origin-line{
+  height:3px;
+  background:#49C5B6;
+  border-radius:999px 0 0 999px;
+}
+.hormone-origin-head{
+  font-size:24px;
+  line-height:1;
+  color:#007A87;
+  font-weight:800;
+  margin-left:-1px;
+}
+.origin-target{
+  font-size:9.5px;
+  color:#5F7280;
+  line-height:1.15;
+}
+.pituitary-origin-row .pit-lh-state{
+  font-size:8px;
+  padding:1px 4px;
+}
+
+/* old lane hooks are invisible; visual arrows now live inside the pituitary node */
+.pituitary-output-zone.v68{
+  display:none !important;
+}
+
+/* Phase emphasis should alter the actual arrows from the hormone chips */
+.pituitary-origin-row.is-hidden{
+  opacity:.18;
+}
+.pituitary-origin-row.is-emph .organ-hormone-chip{
+  box-shadow:0 0 0 3px rgba(73,197,182,.18);
+}
+.pituitary-origin-row.is-emph .hormone-origin-line{
+  background:#007A87;
+}
+.pituitary-origin-row.is-emph .hormone-origin-head{
+  color:#007A87;
+}
+.pituitary-origin-row.is-low .organ-hormone-chip{
+  background:#F4F8F9;
+  color:#49606E;
+  border-color:#B9CBD1;
+}
+.pituitary-origin-row.is-low .hormone-origin-line{
+  background:#B9CBD1;
+}
+.pituitary-origin-row.is-low .hormone-origin-head{
+  color:#7A8D98;
+}
+.pituitary-origin-row.is-surge .organ-hormone-chip{
+  transform:scale(1.18);
+  border-color:#E0B93B;
+  background:#FFF1C4;
+  color:#8A5E00;
+  box-shadow:0 0 0 4px rgba(224,185,59,.22);
+}
+.pituitary-origin-row.is-surge .hormone-origin-line{
+  height:4px;
+  background:#B88500;
+}
+.pituitary-origin-row.is-surge .hormone-origin-head{
+  font-size:31px;
+  color:#B88500;
+}
+.pituitary-origin-row.is-surge .origin-target{
+  font-weight:800;
+  color:#1C2B39;
+}
+.pituitary-origin-row.is-surge .pit-lh-state{
+  border-color:#E0B93B;
+  background:#FFF1C4;
+  color:#8A5E00;
+}
+
+/* Smaller desktop brain while allowing arrows to extend beyond it */
+@media(min-width:861px){
+  .brain-compartment.v61{
+    overflow:visible !important;
+  }
+  .pituitary-node.v68{
+    min-height:52px !important;
+    padding:5px 4px !important;
+  }
+  .pituitary-origin-stack{
+    gap:3px;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 62px auto auto;
+    gap:3px;
+  }
+  .hormone-origin-arrow{
+    min-width:62px;
+  }
+  .origin-target{
+    font-size:8px;
+  }
+  .pituitary-origin-row .pit-lh-state{
+    font-size:7px;
+  }
+}
+
+/* Phone: still show arrows leaving the chips; shorten them so they remain on screen */
+@media(max-width:860px){
+  .pituitary-node.v68{
+    overflow:visible !important;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 48px auto auto;
+  }
+  .hormone-origin-arrow{
+    min-width:48px;
+  }
+  .hormone-origin-head{
+    font-size:21px;
+  }
+  .origin-target{
+    font-size:8.5px;
   }
 }
 
@@ -5525,32 +5867,38 @@ button { touch-action: manipulation; }
               <span class="contained-arrow">↓</span>
             </button>
 
-            <button type="button" class="phys-node brain-node pituitary-node v63" data-node="pituitary">
-              <strong id="physLabelPituitary">Pituitary</strong>
-              <div class="organ-hormone-stack twin">
-                <span class="organ-hormone-chip fsh-chip" id="pitFSHChip">FSH</span>
-                <span class="organ-hormone-chip lh-chip" id="pitLHChip">LH</span>
-              </div>
-            </button>
+            
+<button type="button" class="phys-node brain-node pituitary-node v68" data-node="pituitary">
+  <strong id="physLabelPituitary">Pituitary</strong>
+  <div class="pituitary-origin-stack">
+    <div class="pituitary-origin-row fsh-origin-row">
+      <span class="organ-hormone-chip fsh-chip" id="pitFSHChip">FSH</span>
+      <span class="hormone-origin-arrow fsh-origin-arrow" aria-hidden="true">
+        <span class="hormone-origin-line"></span>
+        <span class="hormone-origin-head">→</span>
+      </span>
+      <span class="origin-target" id="fshTargetLabel">to follicle</span>
+    </div>
+
+    <div class="pituitary-origin-row lh-origin-row">
+      <span class="organ-hormone-chip lh-chip" id="pitLHChip">LH</span>
+      <span class="hormone-origin-arrow lh-origin-arrow" aria-hidden="true">
+        <span class="hormone-origin-line"></span>
+        <span class="hormone-origin-head">→</span>
+      </span>
+      <span class="origin-target" id="lhTargetLabel">to ovary</span>
+      <span class="pit-lh-state" id="lhStateLabel">baseline</span>
+    </div>
+  </div>
+</button>
           </div>
 
           
 
-<div class="pituitary-output-zone v63">
-  <button type="button" class="pit-release-lane fsh-lane" data-node="fsh">
-    <span class="release-source-label">release</span>
-    <span class="release-line"></span>
-    <span class="release-arrow">→</span>
-    <span class="pit-target-label" id="fshTargetLabel">to follicle</span>
-  </button>
 
-  <button type="button" class="pit-release-lane lh-lane" data-node="lh">
-    <span class="release-source-label">release</span>
-    <span class="release-line"></span>
-    <span class="release-arrow">→</span>
-    <span class="pit-target-label" id="lhTargetLabel">to ovary</span>
-    <span class="pit-lh-state" id="lhStateLabel">baseline</span>
-  </button>
+<div class="pituitary-output-zone v68" aria-hidden="true">
+  <span class="fsh-lane"></span>
+  <span class="lh-lane"></span>
 </div>
 
 <div class="ovary-compartment v61">
@@ -5650,7 +5998,7 @@ button { touch-action: manipulation; }
         </div>
       </div>
 
-      <div class="physiology-detail-card v61">
+      <div class="physiology-detail-card v61 phys-detail-below">
         <div class="physiology-detail-topline">
           <div class="physiology-detail-mode" id="physDetailMode">Patient explanation</div>
           <div class="physiology-detail-scenario" id="physDetailScenario">Normal ovulation</div>
@@ -7771,6 +8119,66 @@ render();
   });
 
   copyDetailToMobile();
+})();
+</script>
+
+
+<script>
+(function(){
+  function syncPituitaryRowsV68(){
+    const node = typeof physiologyNode !== 'undefined' ? physiologyNode : 'hypothalamus';
+    const fshRow = document.querySelector('.fsh-origin-row');
+    const lhRow = document.querySelector('.lh-origin-row');
+    const fshChip = document.getElementById('pitFSHChip');
+    const lhChip = document.getElementById('pitLHChip');
+    const fshTarget = document.getElementById('fshTargetLabel');
+    const lhTarget = document.getElementById('lhTargetLabel');
+    const lhState = document.getElementById('lhStateLabel');
+
+    [fshRow, lhRow].forEach(el=>{
+      if(el) el.classList.remove('is-hidden','is-emph','is-low','is-surge');
+    });
+    [fshChip, lhChip].forEach(el=>{
+      if(el) el.classList.remove('is-emph','is-dim','is-surge','is-low');
+    });
+
+    if(fshTarget) fshTarget.textContent='to follicle';
+    if(lhTarget) lhTarget.textContent='to ovary';
+    if(lhState) lhState.textContent='baseline';
+
+    if(node === 'hypothalamus' || node === 'gnrh'){
+      if(fshRow) fshRow.classList.add('is-hidden');
+      if(lhRow) lhRow.classList.add('is-hidden');
+    } else if(node === 'pituitary'){
+      if(fshRow) fshRow.classList.add('is-emph');
+      if(lhRow) lhRow.classList.add('is-emph');
+    } else if(node === 'follicle'){
+      if(fshRow) fshRow.classList.add('is-emph');
+      if(lhRow) lhRow.classList.add('is-hidden');
+    } else if(node === 'ovulation'){
+      if(fshRow) fshRow.classList.add('is-hidden');
+      if(lhRow) lhRow.classList.add('is-emph','is-surge');
+      if(lhTarget) lhTarget.textContent='to ovulation';
+      if(lhState) lhState.textContent='LH surge';
+    } else if(node === 'corpus_luteum'){
+      if(fshRow) fshRow.classList.add('is-emph','is-low');
+      if(lhRow) lhRow.classList.add('is-emph','is-low');
+      if(fshTarget) fshTarget.textContent='to corpus luteum';
+      if(lhTarget) lhTarget.textContent='to corpus luteum';
+      if(lhState) lhState.textContent='lower level';
+    } else if(node === 'luteolysis'){
+      if(fshRow) fshRow.classList.add('is-hidden');
+      if(lhRow) lhRow.classList.add('is-hidden');
+    }
+  }
+
+  const priorRender = renderPhysiology;
+  renderPhysiology = function(){
+    priorRender();
+    syncPituitaryRowsV68();
+  };
+
+  syncPituitaryRowsV68();
 })();
 </script>
 
