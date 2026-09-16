@@ -9346,4 +9346,93 @@ render();
 })();
 </script>
 
+
+<style>
+/* v7.7: make the ovarian target unmistakable when FSH is tapped */
+#physiologyBridge [data-node="follicle"].fsh-target-active{
+  border-color:#007A87 !important;
+  box-shadow:0 0 0 4px rgba(0,122,135,.22), 0 10px 24px rgba(0,122,135,.18) !important;
+  transform:scale(1.02);
+}
+</style>
+<script>
+(function(){
+  function openPhysPopupAfterRender(){
+    if(window.innerWidth > 860) return;
+    const popup=document.getElementById('physMobilePopup');
+    if(!popup) return;
+    const title=document.getElementById('physDetailTitle');
+    const mode=document.getElementById('physDetailMode');
+    const body=document.getElementById('physDetailBody');
+    const note=document.getElementById('physDetailOutcome');
+    const signals=document.getElementById('physDetailSignals');
+    const mt=document.getElementById('physMobilePopupTitle');
+    const mm=document.getElementById('physMobilePopupMode');
+    const mb=document.getElementById('physMobilePopupBody');
+    const mn=document.getElementById('physMobilePopupNote');
+    const ms=document.getElementById('physMobilePopupSignals');
+    if(mt&&title) mt.textContent=title.textContent;
+    if(mm&&mode) mm.textContent=mode.textContent;
+    if(mb&&body) mb.textContent=body.textContent;
+    if(mn&&note) mn.textContent=note.textContent;
+    if(ms){
+      ms.innerHTML='';
+      if(signals){
+        signals.querySelectorAll('.physiology-signal').forEach(s=>{
+          const x=document.createElement('span');
+          x.textContent=s.textContent;
+          ms.appendChild(x);
+        });
+      }
+    }
+    popup.classList.add('open');
+    popup.style.display='block';
+    popup.setAttribute('aria-hidden','false');
+  }
+
+  function chooseNode(node){
+    physiologyScenario='normal';
+    physiologyNode=node;
+    renderPhysiology();
+    setTimeout(openPhysPopupAfterRender,0);
+  }
+
+  /* Capture before the enclosing Pituitary button handles the same tap.
+     This avoids iOS/Safari treating the whole pituitary as the tapped control. */
+  document.addEventListener('click', function(e){
+    const fsh=e.target.closest('#pitFSHChip, .fsh-origin-row');
+    const lh=e.target.closest('#pitLHChip, .lh-origin-row');
+    if(!fsh && !lh) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    if(typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
+
+    if(fsh){
+      chooseNode('follicle');
+      return;
+    }
+
+    if(lh){
+      if(physiologyNode === 'follicle'){
+        chooseNode('ovulation');
+      }else{
+        chooseNode('lh');
+      }
+    }
+  }, true);
+
+  const previousRenderV77=renderPhysiology;
+  renderPhysiology=function(){
+    previousRenderV77();
+    const follicle=document.querySelector('#physiologyBridge [data-node="follicle"]');
+    if(follicle){
+      follicle.classList.toggle('fsh-target-active', physiologyNode==='follicle');
+    }
+  };
+
+  renderPhysiology();
+})();
+</script>
+
 </body></html>
