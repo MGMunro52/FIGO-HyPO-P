@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="FIGO HyPO-P">
-<title>FIGO Ovulatory Disorders — HyPO-P v6.8</title>
+<title>FIGO Ovulatory Disorders — HyPO-P v7.5</title>
 <style>
 :root {
   --figo:#007A87;
@@ -3967,7 +3967,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 contained schematic rebuild */
+/* v7.5 contained schematic rebuild */
 .physiology-body.contained-v60{
   display:grid;
   gap:14px;
@@ -4341,7 +4341,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 egg reservoir + egg–follicle sequence */
+/* v7.5 egg reservoir + egg–follicle sequence */
 .physiology-toolbar.v61{
   display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
 }
@@ -4504,7 +4504,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 fix: one FSH and one LH clearly produced by the pituitary */
+/* v7.5 fix: one FSH and one LH clearly produced by the pituitary */
 .gnrh-contained{
   position:relative;
   gap:4px;
@@ -4645,7 +4645,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8: hormones inside organs; arrows show release */
+/* v7.5: hormones inside organs; arrows show release */
 .hypothalamus-node.v63,
 .pituitary-node.v63{
   display:grid;
@@ -4801,7 +4801,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 refinements */
+/* v7.5 refinements */
 .organ-hormone-chip{
   font-size:12.5px !important;
   padding:5px 12px !important;
@@ -4904,7 +4904,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 restore 2-layer endometrium: basalis + functionalis */
+/* v7.5 restore 2-layer endometrium: basalis + functionalis */
 .contained-uterus .uterus-cavity{
   width:158px !important;
   height:94px !important;
@@ -5000,7 +5000,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8 compact physiology + mobile popup explanation */
+/* v7.5 compact physiology + mobile popup explanation */
 .brain-compartment.v61{
   min-height:220px !important;
   padding:24px 12px 12px !important;
@@ -5238,7 +5238,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8: much more compact graphic, true pituitary-origin outputs, visible explanations */
+/* v7.5: much more compact graphic, true pituitary-origin outputs, visible explanations */
 
 /* true visible ports from pituitary */
 .pituitary-node.v67{ position:relative; overflow:visible !important; }
@@ -5423,7 +5423,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.8: FSH/LH arrows literally emanate from the hormone chips inside the pituitary */
+/* v7.5: FSH/LH arrows literally emanate from the hormone chips inside the pituitary */
 .pituitary-node.v68{
   position:relative;
   overflow:visible !important;
@@ -5577,6 +5577,1003 @@ button { touch-action: manipulation; }
   .origin-target{
     font-size:8.5px;
   }
+}
+
+
+/* v7.5: compact desktop + dedicated phone composition */
+
+/* ---- Desktop/laptop: much tighter overall proportions ---- */
+@media(min-width:861px){
+  .contained-stage.v69{
+    grid-template-columns:92px 0px 190px 112px 142px !important;
+    gap:5px !important;
+    align-items:center !important;
+  }
+
+  .brain-compartment.v61{
+    grid-column:1 !important;
+    min-height:96px !important;
+    height:96px !important;
+    padding:14px 4px 4px !important;
+    border-radius:16px !important;
+    overflow:visible !important;
+  }
+  .brain-compartment .compartment-label{
+    top:4px !important;
+    left:7px !important;
+    font-size:7px !important;
+  }
+  .brain-node{
+    min-height:27px !important;
+    padding:2px 3px !important;
+    border-radius:8px !important;
+  }
+  .brain-node strong{
+    font-size:8.5px !important;
+  }
+  .organ-hormone-chip{
+    font-size:8.5px !important;
+    padding:1px 5px !important;
+  }
+  .gnrh-path.v63{
+    min-height:18px !important;
+    height:18px !important;
+    margin:0 !important;
+  }
+  .gnrh-path.v63 .path-label{
+    font-size:7px !important;
+  }
+  .gnrh-path.v63 .contained-arrow{
+    font-size:14px !important;
+  }
+
+  .pituitary-node.v68{
+    overflow:visible !important;
+  }
+  .pituitary-origin-stack{
+    gap:1px !important;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 48px auto auto !important;
+    gap:2px !important;
+  }
+  .hormone-origin-arrow{
+    min-width:48px !important;
+  }
+  .hormone-origin-line{
+    height:2px !important;
+  }
+  .hormone-origin-head{
+    font-size:17px !important;
+  }
+  .origin-target{
+    font-size:7px !important;
+  }
+  .pituitary-origin-row .pit-lh-state{
+    font-size:6.5px !important;
+    padding:1px 3px !important;
+  }
+
+  .ovary-compartment.v61{
+    grid-column:3 !important;
+    min-height:210px !important;
+    height:auto !important;
+    padding:18px 9px 8px !important;
+    border-radius:28% 36% 34% 38% / 28% 34% 40% 44% !important;
+  }
+  .ovary-compartment .compartment-label{
+    top:5px !important;
+    left:9px !important;
+    font-size:7px !important;
+  }
+  .egg-reservoir{
+    width:62% !important;
+    padding-top:0 !important;
+  }
+  .reservoir-title,.recruitment-caption{
+    font-size:6.8px !important;
+  }
+  .egg-cluster{
+    gap:3px !important;
+    margin:4px auto 2px !important;
+  }
+  .egg-dot{
+    width:7px !important;height:7px !important;
+  }
+  .egg-dot.selected-egg{
+    width:9px !important;height:9px !important;
+  }
+  .recruitment-arrow{
+    font-size:12px !important;
+  }
+  .ovarian-structure.v61{
+    width:52% !important;
+    padding:3px 4px !important;
+  }
+  .ovarian-function{
+    width:34% !important;
+    padding:3px 4px !important;
+  }
+  .ovarian-structure strong,.ovarian-function strong{
+    font-size:8px !important;
+  }
+  .ovarian-caption{
+    font-size:6.5px !important;
+    margin-top:2px !important;
+  }
+  .follicle-unit{
+    width:24px !important;height:24px !important;margin:2px auto 0 !important;
+  }
+  .follicle-ring{
+    width:24px !important;height:24px !important;border-width:2px !important;
+  }
+  .follicle-egg{
+    width:7px !important;height:7px !important;
+  }
+  .released-egg-icon{
+    font-size:12px !important;
+  }
+  .branch-label{
+    font-size:6.3px !important;padding:1px 4px !important;
+  }
+  .branch-arrow,.ovary-flow{
+    font-size:11px !important;
+  }
+
+  .ovarian-output-zone.v61{
+    grid-column:4 !important;
+    padding:4px !important;
+    gap:3px !important;
+    border-radius:10px !important;
+  }
+  .output-source{font-size:6.8px !important;}
+  .output-pill{font-size:7.2px !important;padding:2px 4px !important;}
+  .output-arrow{font-size:10px !important;}
+  .output-plus{font-size:8px !important;}
+
+  .contained-uterus.v61{
+    grid-column:5 !important;
+    padding:17px 5px 6px !important;
+    border-radius:14px !important;
+  }
+  .contained-uterus .compartment-label{
+    top:4px !important;
+    left:7px !important;
+    font-size:7px !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:104px !important;
+    height:58px !important;
+  }
+  .endometrium-stack{
+    width:72px !important;
+  }
+  .endo-phase-label{font-size:7.5px !important;margin-top:3px !important;}
+  .uterus-response-label{font-size:6.8px !important;margin-top:2px !important;}
+
+  .physiology-detail-card.v61{
+    margin-top:2px !important;
+  }
+}
+
+/* ---- Phone/tablet: a dedicated compact 2-column composition ---- */
+@media(max-width:860px){
+  .phys-stage-card.v61{
+    padding:6px !important;
+    overflow:visible !important;
+  }
+
+  .contained-stage.v69{
+    display:grid !important;
+    grid-template-columns:104px 1fr !important;
+    grid-template-rows:auto auto !important;
+    gap:5px 7px !important;
+    align-items:start !important;
+    width:100% !important;
+    max-width:390px !important;
+    margin:0 auto !important;
+    overflow:visible !important;
+  }
+
+  .brain-compartment.v61{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    width:104px !important;
+    max-width:none !important;
+    min-height:112px !important;
+    height:112px !important;
+    padding:16px 4px 4px !important;
+    border-radius:16px !important;
+    overflow:visible !important;
+    justify-self:start !important;
+  }
+  .brain-compartment .compartment-label{
+    top:4px !important;
+    left:6px !important;
+    font-size:7px !important;
+  }
+  .brain-node{
+    min-height:30px !important;
+    padding:2px !important;
+    border-radius:8px !important;
+  }
+  .brain-node strong{font-size:8.5px !important;}
+  .organ-hormone-chip{
+    font-size:8.5px !important;
+    padding:1px 5px !important;
+  }
+  .gnrh-path.v63{
+    min-height:18px !important;
+    height:18px !important;
+    gap:0 !important;
+  }
+  .gnrh-path.v63 .path-label{font-size:7px !important;}
+  .gnrh-path.v63 .contained-arrow{font-size:14px !important;}
+
+  /* FSH/LH arrows are drawn from inside pituitary toward the adjacent ovary column */
+  .pituitary-node.v68{
+    overflow:visible !important;
+  }
+  .pituitary-origin-stack{
+    gap:1px !important;
+    overflow:visible !important;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 64px !important;
+    gap:0 !important;
+    overflow:visible !important;
+  }
+  .pituitary-origin-row .origin-target,
+  .pituitary-origin-row .pit-lh-state{
+    display:none !important;
+  }
+  .hormone-origin-arrow{
+    min-width:64px !important;
+    margin-left:-1px !important;
+    position:relative !important;
+    z-index:30 !important;
+  }
+  .hormone-origin-line{
+    height:3px !important;
+  }
+  .hormone-origin-head{
+    font-size:20px !important;
+  }
+  .pituitary-origin-row.is-surge .hormone-origin-head{
+    font-size:26px !important;
+  }
+
+  .ovary-compartment.v61{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    width:100% !important;
+    max-width:none !important;
+    min-height:220px !important;
+    height:auto !important;
+    padding:18px 8px 8px !important;
+    border-radius:24% 30% 30% 34% / 24% 28% 36% 40% !important;
+    justify-self:stretch !important;
+  }
+  .ovary-compartment .compartment-label{
+    top:4px !important;
+    left:8px !important;
+    font-size:7px !important;
+  }
+  .egg-reservoir{
+    width:58% !important;
+  }
+  .reservoir-title,.recruitment-caption{font-size:6.8px !important;}
+  .egg-cluster{gap:3px !important;margin:3px auto 1px !important;}
+  .egg-dot{width:7px !important;height:7px !important;}
+  .egg-dot.selected-egg{width:9px !important;height:9px !important;}
+  .recruitment-arrow{font-size:11px !important;}
+  .ovarian-structure.v61{
+    width:48% !important;
+    padding:3px 4px !important;
+  }
+  .ovarian-function{
+    width:30% !important;
+    padding:3px 4px !important;
+  }
+  .ovarian-structure strong,.ovarian-function strong{font-size:8px !important;}
+  .ovarian-caption{font-size:6.4px !important;}
+  .follicle-unit{width:23px !important;height:23px !important;margin:2px auto 0 !important;}
+  .follicle-ring{width:23px !important;height:23px !important;border-width:2px !important;}
+  .follicle-egg{width:7px !important;height:7px !important;}
+  .branch-label{font-size:6.2px !important;padding:1px 4px !important;}
+  .branch-arrow,.ovary-flow{font-size:10px !important;}
+
+  /* outputs + uterus share second row, keeping whole graphic in upper half of viewport */
+  .ovarian-output-zone.v61{
+    grid-column:1 !important;
+    grid-row:2 !important;
+    width:104px !important;
+    max-width:none !important;
+    padding:4px !important;
+    gap:2px !important;
+    justify-self:start !important;
+  }
+  .output-source{font-size:6.6px !important;}
+  .output-pill{font-size:7px !important;padding:2px 4px !important;}
+  .output-arrow{font-size:9px !important;}
+  .output-plus{font-size:7px !important;}
+
+  .contained-uterus.v61{
+    grid-column:2 !important;
+    grid-row:2 !important;
+    width:100% !important;
+    max-width:none !important;
+    padding:16px 6px 5px !important;
+    border-radius:14px !important;
+    justify-self:stretch !important;
+  }
+  .contained-uterus .compartment-label{
+    top:4px !important;left:7px !important;font-size:7px !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:104px !important;
+    height:58px !important;
+  }
+  .endometrium-stack{width:72px !important;}
+  .endo-phase-label{font-size:7.5px !important;margin-top:3px !important;}
+  .uterus-response-label{font-size:6.7px !important;margin-top:2px !important;}
+
+  /* popup appears immediately over bottom portion of viewport */
+  .phys-mobile-popup{
+    position:fixed !important;
+    left:8px !important;
+    right:8px !important;
+    bottom:8px !important;
+    z-index:2147483000 !important;
+    max-height:31vh !important;
+    overflow:auto !important;
+    border-radius:14px !important;
+    padding:8px 10px !important;
+  }
+  .phys-mobile-popup.open{
+    display:block !important;
+  }
+  .phys-mobile-popup-head{
+    margin-bottom:4px !important;
+  }
+  .phys-mobile-popup-head strong{
+    font-size:13px !important;
+  }
+  .phys-mobile-popup-body{
+    font-size:11px !important;
+    line-height:1.3 !important;
+  }
+  .phys-mobile-popup-note{
+    font-size:9.5px !important;
+    margin-top:4px !important;
+  }
+  .phys-mobile-popup-close{
+    width:26px !important;height:26px !important;font-size:18px !important;
+  }
+
+  .physiology-detail-card.v61{
+    display:none !important;
+  }
+}
+
+@media(max-width:430px){
+  .contained-stage.v69{
+    grid-template-columns:96px 1fr !important;
+    gap:4px 5px !important;
+  }
+  .brain-compartment.v61{
+    width:96px !important;
+    min-height:104px !important;
+    height:104px !important;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 58px !important;
+  }
+  .hormone-origin-arrow{
+    min-width:58px !important;
+  }
+  .ovary-compartment.v61{
+    min-height:205px !important;
+  }
+  .ovarian-output-zone.v61{
+    width:96px !important;
+  }
+}
+
+
+/* v7.5: phone landscape row layout for brain + ovary + uterus/endometrium */
+
+@media (max-width: 860px) and (orientation: landscape) {
+  .phys-stage-card.v61{
+    padding:5px !important;
+  }
+
+  .contained-stage.v69{
+    max-width:740px !important;
+    grid-template-columns:94px 1fr 112px !important;
+    grid-template-rows:auto auto !important;
+    gap:4px 6px !important;
+    align-items:start !important;
+  }
+
+  /* Icon row: brain | ovary | uterus */
+  .brain-compartment.v61{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    width:94px !important;
+    min-height:96px !important;
+    height:96px !important;
+    padding:14px 4px 4px !important;
+    justify-self:start !important;
+  }
+  .brain-node{
+    min-height:27px !important;
+    padding:2px !important;
+  }
+  .brain-node strong{
+    font-size:8px !important;
+  }
+  .organ-hormone-chip{
+    font-size:8px !important;
+    padding:1px 4px !important;
+  }
+  .gnrh-path.v63{
+    min-height:16px !important;
+    height:16px !important;
+  }
+  .gnrh-path.v63 .path-label{
+    font-size:6.5px !important;
+  }
+  .gnrh-path.v63 .contained-arrow{
+    font-size:13px !important;
+  }
+
+  .pituitary-origin-row{
+    grid-template-columns:auto 54px !important;
+  }
+  .hormone-origin-arrow{
+    min-width:54px !important;
+  }
+  .hormone-origin-head{
+    font-size:18px !important;
+  }
+  .pituitary-origin-row.is-surge .hormone-origin-head{
+    font-size:22px !important;
+  }
+
+  .ovary-compartment.v61{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    min-height:165px !important;
+    padding:14px 7px 6px !important;
+    border-radius:22% 28% 28% 32% / 22% 28% 34% 38% !important;
+    align-self:start !important;
+  }
+  .ovary-compartment .compartment-label{
+    font-size:6.8px !important;
+    top:4px !important;
+    left:7px !important;
+  }
+  .egg-reservoir{
+    width:52% !important;
+  }
+  .reservoir-title, .recruitment-caption{
+    font-size:6px !important;
+  }
+  .egg-cluster{
+    gap:2px !important;
+    margin:2px auto 1px !important;
+  }
+  .egg-dot{
+    width:6px !important;
+    height:6px !important;
+  }
+  .egg-dot.selected-egg{
+    width:8px !important;
+    height:8px !important;
+  }
+  .recruitment-arrow{
+    font-size:10px !important;
+  }
+  .ovarian-structure.v61{
+    width:46% !important;
+    padding:2px 3px !important;
+  }
+  .ovarian-function{
+    width:28% !important;
+    padding:2px 3px !important;
+  }
+  .ovarian-structure strong, .ovarian-function strong{
+    font-size:7.2px !important;
+  }
+  .ovarian-caption{
+    font-size:5.8px !important;
+    margin-top:1px !important;
+  }
+  .follicle-unit{
+    width:20px !important;
+    height:20px !important;
+    margin:1px auto 0 !important;
+  }
+  .follicle-ring{
+    width:20px !important;
+    height:20px !important;
+    border-width:2px !important;
+  }
+  .follicle-egg{
+    width:6px !important;
+    height:6px !important;
+  }
+  .released-egg-icon{
+    font-size:10px !important;
+  }
+  .branch-label{
+    font-size:5.6px !important;
+    padding:1px 3px !important;
+  }
+  .branch-arrow, .ovary-flow{
+    font-size:9px !important;
+  }
+
+  .contained-uterus.v61{
+    grid-column:3 !important;
+    grid-row:1 !important;
+    width:112px !important;
+    padding:14px 5px 5px !important;
+    border-radius:12px !important;
+    justify-self:start !important;
+  }
+  .contained-uterus .compartment-label{
+    font-size:6.8px !important;
+    top:4px !important;
+    left:6px !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:92px !important;
+    height:50px !important;
+  }
+  .endometrium-stack{
+    width:62px !important;
+  }
+  .functionalis-layer{
+    min-height:12px !important;
+  }
+  .basalis-layer{
+    min-height:9px !important;
+  }
+  .contained-uterus[data-phase="follicular"] .functionalis-layer{
+    min-height:18px !important;
+  }
+  .contained-uterus[data-phase="luteal"] .functionalis-layer{
+    min-height:24px !important;
+  }
+  .contained-uterus[data-phase="menstrual"] .functionalis-layer{
+    min-height:6px !important;
+  }
+  .endo-phase-label{
+    font-size:6.8px !important;
+    margin-top:2px !important;
+  }
+  .uterus-response-label{
+    font-size:6px !important;
+    line-height:1.15 !important;
+    margin-top:1px !important;
+  }
+
+  /* Hormone outputs tucked under the ovary, not as a fourth "icon" */
+  .ovarian-output-zone.v61{
+    grid-column:2 !important;
+    grid-row:2 !important;
+    width:100% !important;
+    max-width:none !important;
+    padding:3px !important;
+    gap:2px !important;
+    justify-self:stretch !important;
+  }
+  .output-source{
+    font-size:6.1px !important;
+  }
+  .output-pill{
+    font-size:6.4px !important;
+    padding:2px 4px !important;
+  }
+  .output-arrow{
+    font-size:8px !important;
+  }
+  .output-plus{
+    font-size:7px !important;
+  }
+
+  /* keep explanation popup visible without occupying too much screen */
+  .phys-mobile-popup{
+    left:8px !important;
+    right:8px !important;
+    bottom:6px !important;
+    max-height:34vh !important;
+    padding:7px 9px !important;
+  }
+  .phys-mobile-popup-head strong{
+    font-size:12px !important;
+  }
+  .phys-mobile-popup-body{
+    font-size:10.5px !important;
+  }
+  .phys-mobile-popup-note{
+    font-size:9px !important;
+  }
+}
+
+/* very short landscape phones */
+@media (max-width: 740px) and (orientation: landscape) and (max-height: 430px) {
+  .contained-stage.v69{
+    grid-template-columns:86px 1fr 104px !important;
+    gap:3px 5px !important;
+  }
+  .brain-compartment.v61{
+    width:86px !important;
+    min-height:88px !important;
+    height:88px !important;
+  }
+  .pituitary-origin-row{
+    grid-template-columns:auto 46px !important;
+  }
+  .hormone-origin-arrow{
+    min-width:46px !important;
+  }
+  .ovary-compartment.v61{
+    min-height:150px !important;
+    padding:13px 6px 5px !important;
+  }
+  .contained-uterus.v61{
+    width:104px !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:86px !important;
+    height:46px !important;
+  }
+  .endometrium-stack{
+    width:58px !important;
+  }
+}
+
+
+/* v7.5: laptop explanation panel to the right of the compact icon row */
+@media(min-width:861px){
+  .physiology-layout.v61{
+    display:grid !important;
+    grid-template-columns:minmax(0, 2.15fr) minmax(260px, .85fr) !important;
+    gap:8px !important;
+    align-items:start !important;
+  }
+  .phys-stage-card.v61{
+    grid-column:1 !important;
+    margin:0 !important;
+  }
+  .physiology-detail-card.v61{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    position:sticky !important;
+    top:8px !important;
+    display:block !important;
+    width:auto !important;
+    max-height:calc(100vh - 16px) !important;
+    overflow:auto !important;
+    margin:0 !important;
+    padding:9px 10px !important;
+    border-radius:12px !important;
+  }
+  .physiology-detail-card.v61 h3{
+    margin:2px 0 4px !important;
+    font-size:14px !important;
+  }
+  .physiology-detail-card.v61 p,
+  .physiology-detail-card.v61 li{
+    font-size:10.5px !important;
+    line-height:1.3 !important;
+  }
+  .physiology-detail-topline{
+    gap:4px !important;
+  }
+  .physiology-detail-mode,
+  .physiology-detail-scenario{
+    font-size:8px !important;
+  }
+  .physiology-signals{
+    gap:3px !important;
+    margin:3px 0 5px !important;
+  }
+  .physiology-signal{
+    font-size:8px !important;
+    padding:2px 5px !important;
+  }
+  .physiology-bullets{
+    margin:5px 0 6px 16px !important;
+    padding:0 !important;
+  }
+  .physiology-pathway-note,
+  .physiology-hypop-link{
+    padding:6px 7px !important;
+    font-size:9px !important;
+  }
+}
+
+
+/* v7.5 desktop physiology layout: explanation to the right of the icons */
+@media (min-width: 861px){
+  #physiologyBridge .physiology-layout.v61{
+    display:grid !important;
+    grid-template-columns:minmax(0, 1.7fr) minmax(300px, 0.9fr) !important;
+    gap:12px !important;
+    align-items:start !important;
+  }
+  #physiologyBridge .phys-stage-card.v61{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    min-width:0 !important;
+    width:100% !important;
+    margin:0 !important;
+  }
+  #physiologyBridge .physiology-detail-card.v61{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    display:block !important;
+    position:sticky !important;
+    top:8px !important;
+    align-self:start !important;
+    width:auto !important;
+    max-width:none !important;
+    margin:0 !important;
+    max-height:calc(100vh - 18px) !important;
+    overflow:auto !important;
+  }
+}
+
+/* v7.5 endometrium phase adjustment */
+.contained-uterus[data-phase="follicular"] .functionalis-layer{
+  min-height:26px !important;
+  background:#D6B08A !important;
+}
+.contained-uterus[data-phase="follicular"] .basalis-layer{
+  min-height:12px !important;
+  background:#B48457 !important;
+}
+.contained-uterus[data-phase="ovulatory"] .functionalis-layer{
+  min-height:16px !important;
+  background:#D6B08A !important;
+}
+.contained-uterus[data-phase="ovulatory"] .basalis-layer{
+  min-height:12px !important;
+  background:#B48457 !important;
+}
+
+
+/* v7.5 endometrial phase progression */
+.contained-uterus[data-phase="follicular"] .functionalis-layer{
+  min-height:14px !important;
+  background:#D6B08A !important;
+}
+.contained-uterus[data-phase="follicular"] .basalis-layer{
+  min-height:12px !important;
+  background:#B48457 !important;
+}
+.contained-uterus[data-phase="ovulatory"] .functionalis-layer{
+  min-height:26px !important;
+  background:#D6B08A !important;
+}
+.contained-uterus[data-phase="ovulatory"] .basalis-layer{
+  min-height:12px !important;
+  background:#B48457 !important;
+}
+.contained-uterus[data-phase="luteal"] .functionalis-layer{
+  min-height:34px !important;
+  background:repeating-linear-gradient(
+    90deg,
+    #D6B08A 0 12px,
+    #B38158 12px 17px
+  ) !important;
+}
+.contained-uterus[data-phase="luteal"] .basalis-layer{
+  min-height:12px !important;
+  background:#B48457 !important;
+}
+.contained-uterus[data-phase="menstrual"] .functionalis-layer{
+  min-height:6px !important;
+  opacity:.16 !important;
+  background:#C9B19A !important;
+}
+.contained-uterus[data-phase="menstrual"] .basalis-layer{
+  min-height:12px !important;
+  opacity:1 !important;
+  background:#B48457 !important;
+}
+
+/* v7.5 mobile cleanup */
+@media(max-width:860px){
+  #physiologyBridge .physiology-toolbar.v61{
+    gap:6px !important;
+  }
+  #physiologyBridge .physiology-intro{
+    font-size:11px !important;
+    line-height:1.25 !important;
+  }
+  #physiologyBridge .physiology-toolbar-actions{
+    gap:5px !important;
+  }
+  #physiologyBridge .phys-play-cycle,
+  #physiologyBridge .phys-scenario-controls button{
+    min-height:28px !important;
+    padding:5px 8px !important;
+    font-size:9px !important;
+  }
+  #physiologyBridge .phys-stage-card.v61{
+    border-radius:12px !important;
+    padding:5px !important;
+  }
+  #physiologyBridge .contained-stage.v69{
+    grid-template-columns:92px 1fr !important;
+    gap:4px 6px !important;
+    max-width:360px !important;
+  }
+  #physiologyBridge .brain-compartment.v61{
+    width:92px !important;
+    min-height:96px !important;
+    height:96px !important;
+    padding:13px 3px 3px !important;
+    border-radius:14px !important;
+  }
+  #physiologyBridge .brain-node{
+    min-height:27px !important;
+    border-radius:7px !important;
+  }
+  #physiologyBridge .brain-node strong{
+    font-size:8px !important;
+  }
+  #physiologyBridge .organ-hormone-chip{
+    font-size:8px !important;
+    padding:1px 4px !important;
+  }
+  #physiologyBridge .gnrh-path.v63{
+    min-height:15px !important;
+    height:15px !important;
+  }
+  #physiologyBridge .gnrh-path.v63 .path-label{
+    font-size:6.4px !important;
+  }
+  #physiologyBridge .gnrh-path.v63 .contained-arrow{
+    font-size:12px !important;
+  }
+  #physiologyBridge .pituitary-origin-row{
+    grid-template-columns:auto 50px !important;
+  }
+  #physiologyBridge .hormone-origin-arrow{
+    min-width:50px !important;
+  }
+  #physiologyBridge .hormone-origin-head{
+    font-size:18px !important;
+  }
+  #physiologyBridge .ovary-compartment.v61{
+    min-height:185px !important;
+    padding:15px 7px 6px !important;
+    border-radius:22% 28% 28% 32% / 22% 28% 34% 38% !important;
+  }
+  #physiologyBridge .egg-reservoir{
+    width:50% !important;
+  }
+  #physiologyBridge .reservoir-title,
+  #physiologyBridge .recruitment-caption{
+    font-size:6px !important;
+  }
+  #physiologyBridge .egg-dot{
+    width:6px !important;height:6px !important;
+  }
+  #physiologyBridge .egg-dot.selected-egg{
+    width:8px !important;height:8px !important;
+  }
+  #physiologyBridge .ovarian-structure.v61{
+    width:44% !important;
+  }
+  #physiologyBridge .ovarian-function{
+    width:28% !important;
+  }
+  #physiologyBridge .ovarian-structure strong,
+  #physiologyBridge .ovarian-function strong{
+    font-size:7.2px !important;
+  }
+  #physiologyBridge .ovarian-caption{
+    font-size:5.8px !important;
+    line-height:1.1 !important;
+  }
+  #physiologyBridge .ovarian-output-zone.v61{
+    padding:3px !important;
+    gap:2px !important;
+    border-radius:9px !important;
+  }
+  #physiologyBridge .output-source{
+    font-size:6px !important;
+  }
+  #physiologyBridge .output-pill{
+    font-size:6.5px !important;
+    padding:2px 4px !important;
+  }
+  #physiologyBridge .contained-uterus.v61{
+    padding:14px 5px 5px !important;
+    border-radius:12px !important;
+  }
+  #physiologyBridge .contained-uterus .uterus-cavity{
+    width:96px !important;
+    height:52px !important;
+  }
+  #physiologyBridge .endometrium-stack{
+    width:64px !important;
+  }
+  #physiologyBridge .endo-phase-label{
+    font-size:6.8px !important;
+  }
+  #physiologyBridge .uterus-response-label{
+    font-size:6px !important;
+    line-height:1.12 !important;
+  }
+  #physiologyBridge .phys-mobile-popup{
+    left:7px !important;
+    right:7px !important;
+    bottom:7px !important;
+    max-height:29vh !important;
+    border-radius:12px !important;
+    padding:7px 9px !important;
+  }
+  #physiologyBridge .phys-mobile-popup-head strong{
+    font-size:12px !important;
+  }
+  #physiologyBridge .phys-mobile-popup-body{
+    font-size:10.5px !important;
+    line-height:1.28 !important;
+  }
+  #physiologyBridge .phys-mobile-popup-note{
+    font-size:8.8px !important;
+    line-height:1.2 !important;
+  }
+}
+
+@media(max-width:860px) and (orientation: landscape){
+  #physiologyBridge .contained-stage.v69{
+    grid-template-columns:86px minmax(170px,1fr) 100px !important;
+    grid-template-rows:auto auto !important;
+    max-width:720px !important;
+    gap:3px 5px !important;
+  }
+  #physiologyBridge .brain-compartment.v61{
+    grid-column:1 !important;
+    grid-row:1 !important;
+    width:86px !important;
+    min-height:88px !important;
+    height:88px !important;
+  }
+  #physiologyBridge .ovary-compartment.v61{
+    grid-column:2 !important;
+    grid-row:1 !important;
+    min-height:155px !important;
+  }
+  #physiologyBridge .contained-uterus.v61{
+    grid-column:3 !important;
+    grid-row:1 !important;
+    width:100px !important;
+  }
+  #physiologyBridge .ovarian-output-zone.v61{
+    grid-column:2 !important;
+    grid-row:2 !important;
+  }
+  #physiologyBridge .phys-mobile-popup{
+    max-height:31vh !important;
+  }
+}
+
+
+/* v7.5: physiology demo is intentionally inactive when shared */
+.physiology-body.demo-collapsed .physiology-layout.v61{
+  display:none !important;
+}
+.physiology-body.demo-collapsed .phys-mobile-popup{
+  display:none !important;
 }
 
 </style>
@@ -5835,12 +6832,12 @@ button { touch-action: manipulation; }
     </div>
   </div>
 
-  <div class="physiology-body contained-v61">
+  <div class="physiology-body contained-v61 demo-collapsed">
     <div class="physiology-toolbar v61">
       <p id="physProtoIntro" class="physiology-intro">Select a structure or ovarian phase. The relevant endocrine connection, ovarian event, and endometrial response are highlighted.</p>
       <div class="physiology-toolbar-actions">
         <button type="button" id="physPlayCycle" class="phys-play-cycle">Play normal cycle</button>
-        <button type="button" id="togglePhysDemo" class="phys-play-cycle phys-demo-toggle">Hide physiology demo</button>
+        <button type="button" id="togglePhysDemo" class="phys-play-cycle phys-demo-toggle">Show physiology demo</button>
         <div class="phys-scenario-controls">
           <span class="phys-scenario-label" id="physScenarioLabel">Scenario</span>
           <button type="button" id="physScenarioNormal" class="active">Normal ovulation</button>
@@ -5851,7 +6848,7 @@ button { touch-action: manipulation; }
 
     <div class="physiology-layout v61">
       <div class="phys-stage-card v61">
-        <div class="contained-stage v61">
+        <div class="contained-stage v61 v69">
 
           <div class="brain-compartment v61">
             <div class="compartment-label">BRAIN</div>
@@ -7808,7 +8805,7 @@ render();
       if(fsh) fsh.classList.add('hidden-signal');
       if(luteal) luteal.classList.add('hidden-signal');
       if(lh) lh.classList.add('emphasized-signal');
-      phase='summary'; label='Ovulatory transition';
+      phase='ovulatory'; label='Ovulatory / late proliferative';
     }else if(node === 'corpus_luteum'){
       if(fsh) fsh.classList.add('hidden-signal');
       if(lh) lh.classList.add('hidden-signal');
@@ -7965,8 +8962,8 @@ render();
       if(lhLane) lhLane.classList.add('emphasized-signal','surge');
       if(lhTarget) lhTarget.textContent = 'to ovulation';
       if(lhState) lhState.textContent = 'LH surge';
-      phase='summary'; label='Ovulatory transition';
-      response='The LH surge from the pituitary triggers release of the mature egg.';
+      phase='ovulatory'; label='Ovulatory / late proliferative';
+      response='The LH surge from the pituitary triggers release of the mature egg. The functionalis is thicker at midcycle than earlier in the follicular phase.';
       if(ovary){ ovary.classList.remove('releasing','recruiting'); void ovary.offsetWidth; ovary.classList.add('releasing'); }
     } else if(node === 'corpus_luteum'){
       if(fshChip) fshChip.classList.add('is-low');
@@ -8036,9 +9033,18 @@ render();
   const body = document.querySelector('.physiology-body');
   const toggleBtn = document.getElementById('togglePhysDemo');
   if(toggleBtn && body){
+    toggleBtn.textContent = body.classList.contains('demo-collapsed') ? 'Show physiology demo' : 'Hide physiology demo';
     toggleBtn.addEventListener('click', ()=>{
       body.classList.toggle('demo-collapsed');
       toggleBtn.textContent = body.classList.contains('demo-collapsed') ? 'Show physiology demo' : 'Hide physiology demo';
+      if(body.classList.contains('demo-collapsed')){
+        const popup=document.getElementById('physMobilePopup');
+        if(popup){
+          popup.classList.remove('open');
+          popup.style.display='';
+          popup.setAttribute('aria-hidden','true');
+        }
+      }
     });
   }
 
@@ -8179,6 +9185,41 @@ render();
   };
 
   syncPituitaryRowsV68();
+})();
+</script>
+
+
+<script>
+(function(){
+  function isMobilePhys(){
+    return window.matchMedia('(max-width: 860px)').matches;
+  }
+
+  function forceOpenPhysPopup(){
+    if(!isMobilePhys()) return;
+    const popup = document.getElementById('physMobilePopup');
+    if(!popup) return;
+    popup.classList.add('open');
+    popup.style.display='block';
+    popup.setAttribute('aria-hidden','false');
+  }
+
+  document.addEventListener('click', function(e){
+    const node = e.target.closest('#physiologyBridge [data-node]');
+    if(!node || !isMobilePhys()) return;
+    setTimeout(forceOpenPhysPopup, 20);
+  }, true);
+
+  const originalRenderV69 = renderPhysiology;
+  renderPhysiology = function(){
+    originalRenderV69();
+    if(isMobilePhys()){
+      const popup=document.getElementById('physMobilePopup');
+      if(popup && popup.classList.contains('open')){
+        popup.style.display='block';
+      }
+    }
+  };
 })();
 </script>
 
