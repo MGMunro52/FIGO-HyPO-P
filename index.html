@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>HyPO-P Ovarian SVG Demo BUILD V3.1</title>
+<title>HyPO-P Ovarian SVG Demo BUILD V3.2</title>
 <style>
   :root{
     --figo:#007A87;
@@ -85,7 +85,7 @@
       <h1>HyPO-P Ovarian Physiology Demo</h1>
       <p>Updated ovarian teaching demo with <strong>tubal pickup</strong> and a more rule-based <strong>endometrial response</strong>. Sequence: <strong>FSH → dominant follicle → LH surge / ovulation → fimbrial pickup → corpus luteum → luteolysis / menstruation</strong>.</p>
     </div>
-    <div class="pill">BUILD V3.1 · TUBAL PICKUP + RULE-BASED ENDOMETRIUM</div>
+    <div class="pill">BUILD V3.2 · TUBE–OVARY ANATOMY CLEANUP</div>
   </div>
 
   <div class="layout">
@@ -157,12 +157,30 @@
             <circle cx="307" cy="257" r="6"></circle><circle cx="270" cy="270" r="5"></circle>
           </g>
 
-          <!-- tube and fimbria -->
+          <!-- tube and fimbria: draped over ovary, with ovarian fimbria tether -->
           <g id="tubeBlock">
-            <path d="M415 62 C470 45, 528 52, 571 86 C602 111, 614 143, 610 174" fill="none" stroke="#a37d61" stroke-width="8" stroke-linecap="round"></path>
-            <path d="M414 62 C468 47, 523 54, 565 88 C596 113, 606 143, 603 171" fill="none" stroke="#eadbcb" stroke-width="18" stroke-linecap="round"></path>
-            <path d="M598 154 Q620 147 635 158 M595 165 Q620 169 633 183 M588 176 Q612 191 621 207 M579 185 Q596 207 601 225" fill="none" stroke="#b89473" stroke-width="4" stroke-linecap="round"></path>
-            <text x="507" y="50" class="tiny">Fallopian tube / fimbrial pickup</text>
+            <!-- broad tube segment running toward the uterine cornu -->
+            <path d="M395 67 C450 42, 520 42, 595 79 C655 109, 704 152, 760 208"
+                  fill="none" stroke="#a37d61" stroke-width="9" stroke-linecap="round"></path>
+            <path d="M395 67 C450 42, 520 42, 595 79 C655 109, 704 152, 760 208"
+                  fill="none" stroke="#eadbcb" stroke-width="19" stroke-linecap="round"></path>
+
+            <!-- infundibulum/fimbriae draping over the ovarian pole -->
+            <path d="M407 70 Q392 84 384 103
+                     M414 75 Q399 98 398 120
+                     M420 80 Q409 106 414 132
+                     M426 85 Q420 112 431 137
+                     M432 89 Q434 114 448 132"
+                  fill="none" stroke="#b89473" stroke-width="4" stroke-linecap="round"></path>
+
+            <!-- ovarian fimbria / fimbria ovarica: one fimbria attaches to ovarian surface -->
+            <path d="M397 101 Q386 126 370 145"
+                  fill="none" stroke="#9b755b" stroke-width="5" stroke-linecap="round"></path>
+            <circle cx="370" cy="145" r="4.5" fill="#9b755b"></circle>
+
+            <text x="473" y="42" class="tiny">Fallopian tube</text>
+            <text x="404" y="150" class="tiny">fimbriae</text>
+            <text x="327" y="174" class="tiny">ovarian fimbria</text>
           </g>
 
           <!-- dominant follicle -->
@@ -177,7 +195,7 @@
           <path id="ruptureMark" d="M366 73 Q392 82 402 105" fill="none" stroke="#cc7a00" stroke-width="5" stroke-linecap="round" opacity="0"></path>
           <text id="ovulationLabel" x="387" y="65" class="small" opacity="0">Ovulation</text>
 
-          <path id="releasePath" d="M339 126 C395 98, 462 90, 555 116" fill="none" stroke="#9a7f2f" stroke-width="2.5" stroke-dasharray="8 5" opacity="0"></path>
+          <path id="releasePath" d="M339 126 C366 112, 383 103, 404 102" fill="none" stroke="#9a7f2f" stroke-width="2.5" stroke-dasharray="8 5" opacity="0"></path>
           <circle id="releasedOocyte" cx="339" cy="126" r="7" fill="#fff7cc" stroke="#9a7f2f" stroke-width="2" opacity="0"></circle>
           <text id="oocyteLabel" x="525" y="103" class="tiny" opacity="0">Tubal pickup</text>
 
@@ -192,6 +210,10 @@
         <!-- uterus / endometrium -->
         <g id="uterusBlock" transform="translate(750,360)">
           <text x="56" y="-16" class="label">Uterus / Endometrium</text>
+          <!-- uterine cornual connection to tube -->
+          <path d="M118 15 C84 6, 50 -4, 18 -14" fill="none" stroke="#a37d61" stroke-width="9" stroke-linecap="round"></path>
+          <path d="M118 15 C84 6, 50 -4, 18 -14" fill="none" stroke="#eadbcb" stroke-width="19" stroke-linecap="round"></path>
+
           <path d="M120 0 C97 12,78 30,68 56 C58 84,66 122,92 145 L92 225 C92 241,105 254,121 254 L179 254 C195 254,208 241,208 225 L208 145 C234 122,242 84,232 56 C222 30,203 12,180 0 C167 16,133 16,120 0 z" fill="#e3c5a7" stroke="#946c4a" stroke-width="4"></path>
           <!-- basalis persistent -->
           <path d="M120 49 C111 60,106 74,106 89 L106 198 C106 211,114 219,125 219 L175 219 C186 219,194 211,194 198 L194 89 C194 74,189 60,180 49 C170 60,130 60,120 49 z" fill="#c7966b" stroke="#946c4a" stroke-width="2.4"></path>
@@ -229,7 +251,7 @@
         <path id="withdrawArrow" d="M780 575 C726 605, 676 623, 620 616" fill="none" stroke="#b66a63" stroke-width="4" marker-end="url(#arrowRose)" opacity="0"></path>
         <text id="withdrawLabel" x="657" y="650" class="small" opacity="0">Hormone withdrawal</text>
 
-        <text x="900" y="805" class="tiny" fill="#67818a">HyPO-P ovarian demo · BUILD V3.1</text>
+        <text x="900" y="805" class="tiny" fill="#67818a">HyPO-P ovarian demo · BUILD V3.2</text>
       </svg>
     </div>
 
@@ -240,7 +262,7 @@
         <span class="badge">Late follicular phase</span>
         <span class="badge">Dominant follicle present</span>
       </div>
-      <p><strong>What changed in this version:</strong> the released oocyte is now directed toward a <strong>fallopian tube / fimbrial pickup</strong>, and the endometrium follows a more rule-based progression: <strong>follicular proliferative → thick pre-luteal midcycle → lush secretory luteal → menstruation</strong>.</p>
+      <p><strong>What changed in this version:</strong> the released oocyte is now directed toward a <strong>fimbrial complex draped over the ovary</strong>, including an <strong>ovarian fimbria</strong> tethered to the ovarian surface, and the endometrium follows a more rule-based progression: <strong>follicular proliferative → thick pre-luteal midcycle → lush secretory luteal → menstruation</strong>.</p>
       <div class="legend">
         <div><span class="sw" style="background:#f5dce9"></span> Dominant follicle</div>
         <div><span class="sw" style="background:#f2c75a"></span> Corpus luteum</div>
@@ -333,7 +355,7 @@
     els.oocyteLabel.style.opacity = 1;
     let t = 0;
     const start = {x:339, y:126};
-    const end = {x:553, y:114};
+    const end = {x:404, y:102};
     function step(){
       t += 0.028;
       if(t>1) t = 1;
@@ -360,7 +382,7 @@
     els.oocyte.style.opacity = 0.25;
     animateOocyteToTube();
     showEndo('ov');
-    setInfo('LH surge and ovulation', 'The <strong>LH surge</strong> from the <strong>pituitary</strong> triggers <strong>ovulation</strong>. The follicle ruptures and releases the oocyte. Instead of flying into open space, the oocyte is shown moving toward <strong>fimbrial pickup by the fallopian tube</strong>. At midcycle, the endometrium is at its <strong>thickest pre-luteal proliferative state</strong>.', ['LH surge','Ovulation','Tubal pickup','Midcycle endometrium']);
+    setInfo('LH surge and ovulation', 'The <strong>LH surge</strong> from the <strong>pituitary</strong> triggers <strong>ovulation</strong>. The follicle ruptures and releases the oocyte. The oocyte is shown moving toward the <strong>fimbrial complex</strong>, which drapes over the ovarian pole; one ovarian fimbria is shown tethered to the ovarian surface. At midcycle, the endometrium is at its <strong>thickest pre-luteal proliferative state</strong>.', ['LH surge','Ovulation','Tubal pickup','Midcycle endometrium']);
   }
 
   function showCorpusLuteum(){
