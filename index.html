@@ -6,517 +6,404 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>HyPO-P Ovarian SVG Demo v2 — 2026-09-15</title>
+<title>HyPO-P Ovarian SVG Demo v2</title>
 <style>
   :root{
     --figo:#007A87;
     --mint:#49C5B6;
     --slate:#1C2B39;
-    --bg:#f6fbfb;
+    --soft:#eef7f7;
     --panel:#ffffff;
-    --muted:#8aa1aa;
-    --soft:#d9ecec;
-    --ovary:#f0d9a7;
-    --ovary-stroke:#b8874c;
-    --follicle:#efd4e6;
-    --follicle-stroke:#a45b85;
-    --ute:#dcc1a4;
-    --endo-basal:#c79f7a;
-    --endo-func:#e6c3a3;
-    --endo-secretory:#c99365;
-    --gold:#e9b64b;
+    --line:#d5e7e7;
+    --ovary:#efd7ae;
+    --ovary2:#f6e6c7;
+    --ovaryStroke:#b5804d;
+    --follicle:#f6dde9;
+    --follicleStroke:#ad648a;
+    --tube:#e6d5c2;
+    --tubeStroke:#a37d61;
+    --uterus:#e7cbb0;
+    --uterusStroke:#946c4a;
+    --basalis:#c7966b;
+    --funcFol:#ebcfb0;
+    --funcOv:#ddb184;
+    --funcLut:#c98966;
+    --shed:#c26e61;
   }
-  * { box-sizing:border-box; }
-  body {
-    margin:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: linear-gradient(180deg, #f8fcfc 0%, #eef7f7 100%);
-    color: var(--slate);
-  }
-  .wrap { max-width: 1400px; margin: 0 auto; padding: 18px; }
-  .header {
-    display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:14px;
-  }
-  .titlebox h1 { margin:0; font-size: clamp(24px, 3vw, 38px); line-height:1.1; color:var(--slate); }
-  .titlebox p { margin:6px 0 0; color:#445b64; max-width:900px; }
-  .mode-tag {
-    background: #e2f4f1; color: var(--figo); border:1px solid #b7e2da; padding:8px 12px; border-radius:999px;
-    font-weight:600; white-space:nowrap;
-  }
-  .layout {
-    display:grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr); gap:18px; align-items:start;
-  }
-  .figure-card, .info-card {
-    background:var(--panel); border:1px solid #d8e7e7; border-radius:18px; box-shadow:0 10px 30px rgba(28,43,57,.08);
-  }
-  .figure-card { padding:14px; overflow:hidden; }
-  .info-card { padding:18px; position:sticky; top:12px; }
-  .controls { display:flex; flex-wrap:wrap; gap:10px; margin:0 0 12px; }
-  button.control {
-    border:1px solid #b8d8d8; background:#fff; color:var(--slate); border-radius:12px; padding:10px 14px;
-    font-weight:700; cursor:pointer; box-shadow:0 1px 0 rgba(0,0,0,.03);
-  }
-  button.control.primary { background: var(--figo); color:#fff; border-color: var(--figo); }
-  button.control.accent { background: #fef8e8; border-color:#ecd187; }
-  button.control:hover { transform: translateY(-1px); }
-  .hint { font-size: 13px; color:#617983; margin-bottom:8px; }
-  .info-card h2 { margin:0 0 10px; font-size:24px; color:var(--figo); }
-  .info-card h3 { margin:16px 0 6px; font-size:16px; color:var(--slate); }
-  .info-card p { margin:8px 0; line-height:1.45; }
-  .badge-row { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 8px; }
-  .badge { padding:6px 10px; border-radius:999px; background:#eef7f7; border:1px solid #d6ebeb; font-size:13px; }
-  .legend { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
-  .legend div { font-size:13px; display:flex; align-items:center; gap:8px; }
-  .swatch { width:16px; height:16px; border-radius:4px; border:1px solid rgba(0,0,0,.12); }
-  svg { width:100%; height:auto; display:block; }
-  .clickable { cursor:pointer; }
-  .label { font-size:18px; font-weight:700; fill: var(--slate); }
-  .small { font-size:15px; font-weight:600; fill:#30434b; }
-  .tiny { font-size:13px; fill:#3e565f; }
-  .muted { opacity:.35; }
-  .hidden { display:none; }
-  .pulse { animation:pulse 1.5s ease-in-out infinite; }
-  .glow { filter: drop-shadow(0 0 8px rgba(73,197,182,.7)); }
-  .highlight-stroke { stroke: var(--figo) !important; stroke-width:4 !important; }
-  .arrow-strong { stroke-width:5 !important; stroke: var(--figo) !important; }
-  .emphasis { font-weight:800; fill:var(--figo); }
-  .lhsurge { fill: #e08700 !important; font-weight:800; }
-  .info-mobile {
-    display:none; position:fixed; left:10px; right:10px; bottom:10px; z-index:20; background:#fff;
-    border:1px solid #d6e6e6; border-radius:16px; padding:14px; box-shadow:0 12px 30px rgba(0,0,0,.18);
-  }
-  .info-mobile .close { float:right; border:none; background:transparent; font-size:22px; cursor:pointer; line-height:1; }
-  @keyframes pulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-  }
-  @media (max-width: 980px) {
-    .layout { grid-template-columns: 1fr; }
-    .info-card { position:static; }
-  }
-  @media (max-width: 760px) {
-    .wrap { padding:10px; }
-    .header { flex-direction:column; }
-    .info-card { display:none; }
-    .info-mobile { display:block; }
-    .controls { gap:8px; }
-    button.control { padding:9px 12px; font-size:14px; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#f9fcfc 0%,#eff7f7 100%);color:var(--slate)}
+  .wrap{max-width:1420px;margin:0 auto;padding:18px}
+  .header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}
+  .header h1{margin:0;font-size:clamp(24px,3vw,38px);line-height:1.06}
+  .header p{margin:8px 0 0;color:#47606a;max-width:950px}
+  .pill{padding:8px 12px;border-radius:999px;background:#e3f4f2;border:1px solid #bfe3dd;color:var(--figo);font-weight:700;white-space:nowrap}
+  .layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.8fr);gap:18px;align-items:start}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 28px rgba(28,43,57,.08)}
+  .figure{padding:14px;overflow:hidden}
+  .panel{padding:18px;position:sticky;top:10px}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+  .controls button{border:1px solid #bed9d9;background:#fff;color:var(--slate);border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+  .controls button.primary{background:var(--figo);color:#fff;border-color:var(--figo)}
+  .controls button.accent{background:#fff5e4;border-color:#e5c06d}
+  .controls button.luteal{background:#f6ebe5;border-color:#cf9e84}
+  .controls button.warn{background:#fff1f0;border-color:#e3aaa2}
+  .note{font-size:13px;color:#627b84;margin-bottom:8px}
+  svg{width:100%;height:auto;display:block}
+  .label{font-size:18px;font-weight:700;fill:var(--slate)}
+  .small{font-size:15px;font-weight:700;fill:#30434b}
+  .tiny{font-size:13px;fill:#46606a}
+  .clickable{cursor:pointer}
+  .activeStroke{stroke:var(--figo)!important;stroke-width:4!important}
+  .emphasis{fill:var(--figo)!important;font-weight:800}
+  .lhsurge{fill:#d88400!important;font-weight:800}
+  .strongArrow{stroke:var(--figo)!important;stroke-width:5!important}
+  .hidden{display:none}
+  .panel h2{margin:0 0 10px;color:var(--figo);font-size:24px}
+  .panel p{line-height:1.45;margin:8px 0}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+  .badge{padding:6px 10px;border-radius:999px;background:#eef7f7;border:1px solid #d7e8e8;font-size:13px}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .legend div{display:flex;align-items:center;gap:8px;font-size:13px}
+  .sw{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.12)}
+  .build{font-size:12px;color:#718a93;margin-top:16px}
+  .mobilebox{display:none;position:fixed;left:10px;right:10px;bottom:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 28px rgba(0,0,0,.18);z-index:20}
+  .mobilebox button{border:none;background:transparent;float:right;font-size:24px;line-height:1;cursor:pointer}
+  @media (max-width:980px){.layout{grid-template-columns:1fr}.panel{position:static}}
+  @media (max-width:760px){
+    .wrap{padding:10px}
+    .header{flex-direction:column}
+    .panel{display:none}
+    .mobilebox{display:block}
+    .controls button{padding:9px 11px;font-size:14px}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="header">
-    <div class="titlebox">
-      <h1>HyPO-P Ovarian Interaction Demo <span style="font-size:.45em;color:#007A87;vertical-align:middle">v2</span></h1>
-      <p>Prototype focused on ovarian physiology. Tap the hormone labels in the pituitary or use the buttons to see <strong>FSH activate the dominant follicle</strong>, then <strong>LH surge trigger ovulation</strong>, followed by <strong>corpus luteum formation</strong>.</p>
+    <div>
+      <h1>HyPO-P Ovarian Physiology Demo</h1>
+      <p>Updated ovarian teaching demo with <strong>tubal pickup</strong> and a more rule-based <strong>endometrial response</strong>. Sequence: <strong>FSH → dominant follicle → LH surge / ovulation → fimbrial pickup → corpus luteum → luteolysis / menstruation</strong>.</p>
     </div>
-    <div class="mode-tag">Interactive ovarian SVG demo</div>
+    <div class="pill">Build v3 · GitHub-ready</div>
   </div>
 
   <div class="layout">
-    <div class="figure-card">
-<div style="margin:0 0 10px;padding:8px 10px;border:1px solid #b7e2da;background:#f0faf8;border-radius:10px;font-size:13px;color:#31565b"><strong>Build check:</strong> v2 · 2026-09-15 · GitHub test package</div>
+    <div class="card figure">
       <div class="controls">
-        <button class="control primary" id="btnFSH">Activate FSH</button>
-        <button class="control accent" id="btnLH">Trigger LH Surge</button>
-        <button class="control" id="btnReset">Reset</button>
+        <button class="primary" id="btnFSH">FSH</button>
+        <button class="accent" id="btnLH">LH Surge / Ovulation</button>
+        <button class="luteal" id="btnCL">Corpus Luteum</button>
+        <button class="warn" id="btnLuteolysis">Luteolysis / Menses</button>
+        <button id="btnReset">Reset</button>
       </div>
-      <div class="hint">Desktop: explanation is on the right. Phone: use the popup panel that remains visible at the bottom.</div>
+      <div class="note">Tap the hormone labels in the pituitary or use the buttons. On phones, the explanation remains in the bottom popup so it stays visible with the figure.</div>
 
-      <svg viewBox="0 0 1100 760" aria-label="Ovarian physiology demo">
+      <svg viewBox="0 0 1160 820" aria-label="Interactive ovarian physiology demo">
         <defs>
-          <marker id="arrowHeadTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-            <path d="M0,0 L12,6 L0,12 z" fill="#007A87"></path>
-          </marker>
-          <marker id="arrowHeadBrown" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
-            <path d="M0,0 L12,6 L0,12 z" fill="#8f623d"></path>
-          </marker>
+          <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#007A87"></path></marker>
+          <marker id="arrowBrown" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#8f623d"></path></marker>
+          <marker id="arrowRose" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#b66a63"></path></marker>
         </defs>
 
-        <!-- explanation area reference block -->
-        <text x="580" y="45" class="label" fill="#007A87">Selected item explanation →</text>
-        <rect x="565" y="58" width="495" height="168" rx="18" fill="#f8fbfb" stroke="#d7e8e8"></rect>
-        <text x="590" y="93" class="small" fill="#617983">In the app, this area is reserved for explanatory content, “More”, and later audio.</text>
-        <text x="590" y="120" class="tiny" fill="#617983">For this demo, the live explanation appears in the side panel (desktop) or popup (mobile).</text>
+        <!-- reserved info area on desktop -->
+        <text x="620" y="44" class="label" fill="#007A87">Reserved explanation space</text>
+        <rect x="605" y="58" width="510" height="162" rx="18" fill="#f8fbfb" stroke="#d7e8e8"></rect>
+        <text x="628" y="92" class="small" fill="#627b84">This area is intentionally left open for explanatory content in the full app.</text>
+        <text x="628" y="118" class="tiny" fill="#627b84">For this prototype, the explanation appears in the right panel on desktop and the bottom popup on mobile.</text>
 
-        <!-- Brain and pituitary -->
-        <g id="brainBlock" transform="translate(50,30)">
-          <path d="M70,48
-                   C40,10 95,-8 130,20
-                   C155,-5 220,-2 230,48
-                   C265,46 285,92 255,123
-                   C265,170 212,197 173,177
-                   C147,201 96,202 71,173
-                   C23,177 1,122 20,93
-                   C-2,60 18,28 70,48 z"
-                fill="#edf6f6" stroke="#6d8b93" stroke-width="3"></path>
-          <text x="88" y="28" class="label" font-size="24">Brain</text>
+        <!-- Brain -->
+        <g transform="translate(58,30)">
+          <path d="M70,52 C36,14 96,-10 132,19 C161,-6 223,-3 233,46 C266,45 286,90 257,121 C267,171 214,197 176,177 C149,203 97,204 72,174 C26,178 0,123 19,93 C-1,61 18,31 70,52 z" fill="#edf6f6" stroke="#708d96" stroke-width="3"></path>
+          <text x="90" y="28" class="label">Brain</text>
+          <ellipse id="hypothalamus" class="clickable" cx="95" cy="114" rx="51" ry="23" fill="#dcecef" stroke="#5c7881" stroke-width="2.4"></ellipse>
+          <text x="58" y="120" class="small clickable" id="gnrhText">GnRH</text>
+          <text x="42" y="149" class="tiny">Hypothalamus</text>
+          <ellipse id="pituitary" cx="198" cy="133" rx="56" ry="35" fill="#e8f5ef" stroke="#5b7a70" stroke-width="2.5"></ellipse>
+          <text x="156" y="137" class="small">Pituitary</text>
+          <path d="M146 115 C159 113,168 114,178 121" fill="none" stroke="#007A87" stroke-width="4" marker-end="url(#arrowTeal)"></path>
+          <text x="126" y="95" class="tiny emphasis">GnRH release</text>
 
-          <ellipse id="hypothalamus" class="clickable" cx="95" cy="112" rx="48" ry="22" fill="#dcecef" stroke="#56727a" stroke-width="2.5"></ellipse>
-          <text x="56" y="117" class="small clickable" id="hypoText">GnRH</text>
-          <text x="40" y="145" class="tiny">Hypothalamus</text>
-
-          <ellipse id="pituitary" cx="194" cy="132" rx="52" ry="34" fill="#e8f5ef" stroke="#50756a" stroke-width="2.5"></ellipse>
-          <text x="155" y="135" class="small">Pituitary</text>
-
-          <!-- GnRH arrow text/action -->
-          <path id="gnrhArrow" d="M143 112 C156 110, 162 112, 171 118" fill="none" stroke="#007A87" stroke-width="4" marker-end="url(#arrowHeadTeal)"></path>
-          <text x="126" y="93" class="tiny emphasis">GnRH release</text>
-
-          <!-- FSH/LH origin in pituitary -->
-          <g id="fshOrigin" class="clickable" tabindex="0">
-            <rect x="151" y="162" width="58" height="28" rx="12" fill="#eef7f7" stroke="#8abbb5"></rect>
-            <text x="168" y="181" class="small" style="font-size:18px">FSH</text>
+          <g id="fshOrigin" class="clickable">
+            <rect x="150" y="164" width="60" height="30" rx="12" fill="#eef7f7" stroke="#8bbcb7"></rect>
+            <text x="166" y="184" class="small" style="font-size:18px">FSH</text>
           </g>
-          <g id="lhOrigin" class="clickable" tabindex="0">
-            <rect x="214" y="162" width="46" height="28" rx="12" fill="#fff3df" stroke="#ddb86d"></rect>
-            <text id="lhText" x="228" y="181" class="small" style="font-size:18px">LH</text>
+          <g id="lhOrigin" class="clickable">
+            <rect x="216" y="164" width="48" height="30" rx="12" fill="#fff4e3" stroke="#ddb86d"></rect>
+            <text id="lhText" x="231" y="184" class="small" style="font-size:18px">LH</text>
           </g>
         </g>
 
-        <!-- Hormone arrows to ovary -->
-        <g id="hormoneLanes">
-          <path id="fshLane" d="M270 208 C315 240, 340 272, 365 330" fill="none" stroke="#6c8c97" stroke-width="3.5" marker-end="url(#arrowHeadTeal)"></path>
-          <text id="fshLaneLabel" x="280" y="240" class="small">FSH</text>
+        <!-- pituitary to ovary arrows -->
+        <path id="fshLane" d="M270 210 C320 252, 358 310, 383 378" fill="none" stroke="#6f8f9a" stroke-width="3.5" marker-end="url(#arrowTeal)"></path>
+        <text id="fshLaneLabel" x="281" y="240" class="small">FSH</text>
+        <path id="lhLane" d="M325 210 C380 260, 426 320, 485 392" fill="none" stroke="#6f8f9a" stroke-width="3.5" marker-end="url(#arrowTeal)"></path>
+        <text id="lhLaneLabel" x="338" y="250" class="small">LH</text>
 
-          <path id="lhLane" d="M322 208 C365 245, 400 292, 430 380" fill="none" stroke="#6c8c97" stroke-width="3.5" marker-end="url(#arrowHeadTeal)"></path>
-          <text id="lhLaneLabel" x="332" y="248" class="small">LH</text>
-        </g>
+        <!-- ovary -->
+        <g id="ovaryBlock" transform="translate(108,300)">
+          <text x="125" y="-22" class="label">Ovary</text>
+          <ellipse cx="220" cy="175" rx="190" ry="122" fill="#f7e6c7" stroke="#b5804d" stroke-width="4"></ellipse>
+          <ellipse cx="220" cy="175" rx="164" ry="101" fill="#f3ddb7" stroke="#d2ae81" stroke-width="1.8"></ellipse>
+          <text x="44" y="114" class="tiny">Cortex</text>
+          <text x="206" y="180" class="tiny">Medulla</text>
 
-        <!-- Ovary -->
-        <g id="ovaryBlock" transform="translate(180,275)">
-          <text x="65" y="-18" class="label">Ovary</text>
-          <ellipse cx="180" cy="170" rx="175" ry="118" fill="#f8ecd2" stroke="#b8874c" stroke-width="4"></ellipse>
-          <ellipse cx="180" cy="170" rx="151" ry="95" fill="#f7e2bc" stroke="#cfad7d" stroke-width="1.8"></ellipse>
-          <text x="32" y="104" class="tiny">Cortex</text>
-          <text x="160" y="174" class="tiny">Medulla</text>
+          <!-- scattered small follicles in cortex -->
+          <g fill="#f4d8e7" stroke="#ad648a" stroke-width="1.4">
+            <circle cx="100" cy="114" r="6"></circle><circle cx="122" cy="92" r="5"></circle><circle cx="145" cy="84" r="5"></circle>
+            <circle cx="78" cy="164" r="5"></circle><circle cx="90" cy="216" r="6"></circle><circle cx="122" cy="244" r="5"></circle>
+            <circle cx="168" cy="263" r="5"></circle><circle cx="314" cy="90" r="6"></circle><circle cx="346" cy="111" r="6"></circle>
+            <circle cx="363" cy="151" r="5"></circle><circle cx="359" cy="204" r="5"></circle><circle cx="334" cy="238" r="5"></circle>
+            <circle cx="307" cy="257" r="6"></circle><circle cx="270" cy="270" r="5"></circle>
+          </g>
 
-          <!-- small cortical follicles -->
-          <g fill="#efd4e6" stroke="#a45b85" stroke-width="1.5">
-            <circle cx="78" cy="122" r="7"></circle>
-            <circle cx="98" cy="95" r="6"></circle>
-            <circle cx="121" cy="82" r="5"></circle>
-            <circle cx="64" cy="190" r="6"></circle>
-            <circle cx="88" cy="214" r="7"></circle>
-            <circle cx="118" cy="241" r="5"></circle>
-            <circle cx="150" cy="256" r="6"></circle>
-            <circle cx="267" cy="84" r="6"></circle>
-            <circle cx="303" cy="105" r="7"></circle>
-            <circle cx="315" cy="142" r="6"></circle>
-            <circle cx="320" cy="197" r="6"></circle>
-            <circle cx="298" cy="227" r="5"></circle>
-            <circle cx="272" cy="244" r="7"></circle>
-            <circle cx="246" cy="257" r="5"></circle>
+          <!-- tube and fimbria -->
+          <g id="tubeBlock">
+            <path d="M415 62 C470 45, 528 52, 571 86 C602 111, 614 143, 610 174" fill="none" stroke="#a37d61" stroke-width="8" stroke-linecap="round"></path>
+            <path d="M414 62 C468 47, 523 54, 565 88 C596 113, 606 143, 603 171" fill="none" stroke="#eadbcb" stroke-width="18" stroke-linecap="round"></path>
+            <path d="M598 154 Q620 147 635 158 M595 165 Q620 169 633 183 M588 176 Q612 191 621 207 M579 185 Q596 207 601 225" fill="none" stroke="#b89473" stroke-width="4" stroke-linecap="round"></path>
+            <text x="507" y="50" class="tiny">Fallopian tube / fimbrial pickup</text>
           </g>
 
           <!-- dominant follicle -->
           <g id="dominantFollicle" class="clickable">
-            <circle id="dominantFollicleCircle" cx="255" cy="135" r="64" fill="#f5dce9" stroke="#a45b85" stroke-width="4"></circle>
-            <circle cx="255" cy="135" r="53" fill="#faedf4" stroke="#cb8fb1" stroke-width="2"></circle>
-            <circle id="oocyte" cx="273" cy="131" r="9" fill="#fff7cc" stroke="#9a7f2f" stroke-width="2.2"></circle>
-            <text x="202" y="129" class="tiny">Dominant</text>
-            <text x="202" y="145" class="tiny">follicle</text>
+            <circle id="dominantFollicleCircle" cx="319" cy="132" r="74" fill="#f5dce9" stroke="#ad648a" stroke-width="4"></circle>
+            <circle cx="319" cy="132" r="61" fill="#fbedf4" stroke="#cc91b2" stroke-width="2"></circle>
+            <circle id="oocyte" cx="339" cy="126" r="8" fill="#fff7cc" stroke="#9a7f2f" stroke-width="2"></circle>
+            <text x="256" y="130" class="tiny">Dominant</text>
+            <text x="256" y="147" class="tiny">follicle</text>
           </g>
 
-          <!-- rupture / ovulation -->
-          <g id="ovulationEvent" class="clickable">
-            <path id="ruptureMark" d="M309 82 Q333 88 342 108" fill="none" stroke="#cc7a00" stroke-width="5" stroke-linecap="round" opacity="0"></path>
-            <text x="330" y="73" class="small" id="ovulationLabel" opacity="0">Ovulation</text>
-          </g>
+          <path id="ruptureMark" d="M366 73 Q392 82 402 105" fill="none" stroke="#cc7a00" stroke-width="5" stroke-linecap="round" opacity="0"></path>
+          <text id="ovulationLabel" x="387" y="65" class="small" opacity="0">Ovulation</text>
 
-          <!-- released oocyte trajectory -->
-          <path id="releasePath" d="M273 131 C318 112, 366 93, 405 96" fill="none" stroke="#9a7f2f" stroke-width="2.5" stroke-dasharray="7 5" opacity="0.45"></path>
-          <circle id="releasedOocyte" cx="273" cy="131" r="8" fill="#fff7cc" stroke="#9a7f2f" stroke-width="2" opacity="0"></circle>
-          <text id="oocyteLabel" x="368" y="84" class="tiny" opacity="0">Released oocyte</text>
+          <path id="releasePath" d="M339 126 C395 98, 462 90, 555 116" fill="none" stroke="#9a7f2f" stroke-width="2.5" stroke-dasharray="8 5" opacity="0"></path>
+          <circle id="releasedOocyte" cx="339" cy="126" r="7" fill="#fff7cc" stroke="#9a7f2f" stroke-width="2" opacity="0"></circle>
+          <text id="oocyteLabel" x="525" y="103" class="tiny" opacity="0">Tubal pickup</text>
 
           <!-- corpus luteum -->
           <g id="corpusLuteum" class="clickable" opacity="0">
-            <path d="M216 183
-                     C190 160,198 125,228 111
-                     C255 97,288 108,302 136
-                     C315 164,304 196,278 212
-                     C250 229,225 218,216 183 z"
-                  fill="#f4c95b" stroke="#b9871f" stroke-width="4"></path>
-            <path d="M228 172 C239 146, 272 144, 286 170" fill="none" stroke="#b9871f" stroke-width="3"></path>
-            <text x="212" y="233" class="tiny">Corpus luteum</text>
+            <path d="M275 185 C244 159,251 118,289 104 C320 93,359 106,373 138 C387 171,373 206,342 221 C309 237,281 222,275 185 z" fill="#f2c75a" stroke="#b9871f" stroke-width="4"></path>
+            <path d="M289 175 C301 149,337 148,351 175" fill="none" stroke="#b9871f" stroke-width="3"></path>
+            <text x="274" y="247" class="tiny">Corpus luteum</text>
           </g>
         </g>
 
-        <!-- uterine / endometrium block -->
-        <g id="uterusBlock" transform="translate(685,330)">
-          <text x="68" y="-16" class="label">Uterus / Endometrium</text>
-          <path d="M118 0
-                   C94 10,73 29,63 57
-                   C53 83,60 120,86 142
-                   L86 212
-                   C86 229,99 242,116 242
-                   L171 242
-                   C188 242,201 229,201 212
-                   L201 142
-                   C227 120,234 83,224 57
-                   C214 29,193 10,169 0
-                   C157 14,132 20,118 0 z"
-                fill="#e7d0bb" stroke="#9b7657" stroke-width="4"></path>
-          <path d="M117 41
-                   C106 52,100 67,100 86
-                   L100 188
-                   C100 199,107 206,117 206
-                   L170 206
-                   C180 206,187 199,187 188
-                   L187 86
-                   C187 67,181 52,170 41
-                   C160 52,126 52,117 41 z"
-                fill="#c99f7d" stroke="#9b7657" stroke-width="2.5"></path>
+        <!-- uterus / endometrium -->
+        <g id="uterusBlock" transform="translate(750,360)">
+          <text x="56" y="-16" class="label">Uterus / Endometrium</text>
+          <path d="M120 0 C97 12,78 30,68 56 C58 84,66 122,92 145 L92 225 C92 241,105 254,121 254 L179 254 C195 254,208 241,208 225 L208 145 C234 122,242 84,232 56 C222 30,203 12,180 0 C167 16,133 16,120 0 z" fill="#e3c5a7" stroke="#946c4a" stroke-width="4"></path>
+          <!-- basalis persistent -->
+          <path d="M120 49 C111 60,106 74,106 89 L106 198 C106 211,114 219,125 219 L175 219 C186 219,194 211,194 198 L194 89 C194 74,189 60,180 49 C170 60,130 60,120 49 z" fill="#c7966b" stroke="#946c4a" stroke-width="2.4"></path>
 
-          <!-- functionalis states -->
-          <g id="endoThin">
-            <path d="M123 59 C117 66,113 77,113 89 L113 177 C113 183,117 188,123 188 L164 188 C170 188,174 183,174 177 L174 89 C174 77,170 66,164 59 C155 66,132 66,123 59 z"
-                  fill="#edcfb3"></path>
+          <!-- proliferative follicular -->
+          <g id="endoFollicular">
+            <path d="M127 67 C121 74,118 84,118 96 L118 178 C118 185,123 191,129 191 L171 191 C177 191,182 185,182 178 L182 96 C182 84,179 74,173 67 C165 73,135 73,127 67 z" fill="#ebcfb0"></path>
           </g>
-          <g id="endoThick" opacity="0">
-            <path d="M119 53 C112 61,107 74,107 92 L107 184 C107 193,113 198,121 198 L166 198 C174 198,180 193,180 184 L180 92 C180 74,175 61,168 53 C159 61,128 61,119 53 z"
-                  fill="#e7c09b"></path>
+
+          <!-- midcycle pre-luteal, thickest proliferative -->
+          <g id="endoOvulatory" opacity="0">
+            <path d="M123 57 C115 66,111 79,111 95 L111 188 C111 198,118 204,126 204 L174 204 C182 204,189 198,189 188 L189 95 C189 79,185 66,177 57 C167 65,133 65,123 57 z" fill="#ddb184"></path>
           </g>
-          <g id="endoSecretory" opacity="0">
-            <path d="M117 51 C109 60,103 76,103 95 L103 188 C103 199,110 205,120 205 L167 205 C177 205,184 199,184 188 L184 95 C184 76,178 60,170 51 C160 60,127 60,117 51 z"
-                  fill="#ddb087"></path>
-            <path d="M114 80 L175 80 M111 96 L178 96 M111 112 L178 112 M111 128 L178 128 M111 144 L178 144 M111 160 L178 160 M114 176 L175 176"
-                  stroke="#b67b4a" stroke-width="3"></path>
+
+          <!-- lush secretory -->
+          <g id="endoLuteal" opacity="0">
+            <path d="M119 52 C110 62,105 77,105 96 L105 193 C105 205,114 212,125 212 L175 212 C186 212,195 205,195 193 L195 96 C195 77,190 62,181 52 C169 61,131 61,119 52 z" fill="#c98966"></path>
+            <path d="M122 84 C135 91,165 92,179 84 M120 115 C134 122,166 123,181 115 M119 146 C134 153,167 154,181 146 M122 176 C136 183,165 184,178 176" fill="none" stroke="#b07150" stroke-width="3" stroke-linecap="round"></path>
           </g>
-          <text id="endoStateLabel" x="55" y="275" class="small">Thin proliferative functionalis</text>
+
+          <!-- menstruation -->
+          <g id="endoMenstruation" opacity="0">
+            <path d="M127 72 C122 78,119 87,119 95 L119 132 C119 137,123 141,128 141 L172 141 C177 141,181 137,181 132 L181 95 C181 87,178 78,173 72 C164 78,136 78,127 72 z" fill="#d88b7e"></path>
+            <path d="M120 145 C127 154,136 163,145 170 C154 177,164 183,174 190" fill="none" stroke="#bc6459" stroke-width="4" stroke-linecap="round"></path>
+            <path d="M135 145 C140 154,147 161,153 166" fill="none" stroke="#bc6459" stroke-width="3" stroke-linecap="round"></path>
+          </g>
+          <text id="endoStateLabel" x="38" y="288" class="small">Follicular proliferative endometrium</text>
         </g>
 
-        <!-- ovarian hormone arrows to uterus -->
-        <g id="ovaryToUterusBlock">
-          <path id="estradiolArrow" d="M560 410 C630 410, 668 410, 720 420" fill="none" stroke="#8f623d" stroke-width="4" marker-end="url(#arrowHeadBrown)" opacity="0"></path>
-          <text id="estradiolLabel" x="606" y="394" class="small" opacity="0">Estradiol</text>
+        <!-- hormone arrows ovary to uterus -->
+        <path id="estradiolArrow" d="M610 474 C673 469, 721 468, 776 468" fill="none" stroke="#8f623d" stroke-width="4" marker-end="url(#arrowBrown)" opacity="0"></path>
+        <text id="estradiolLabel" x="649" y="453" class="small" opacity="0">Estradiol</text>
+        <path id="progArrow" d="M605 520 C675 526, 725 532, 778 534" fill="none" stroke="#7f5c83" stroke-width="4" marker-end="url(#arrowBrown)" opacity="0"></path>
+        <text id="progLabel" x="633" y="551" class="small" opacity="0">Progesterone</text>
+        <path id="withdrawArrow" d="M780 575 C726 605, 676 623, 620 616" fill="none" stroke="#b66a63" stroke-width="4" marker-end="url(#arrowRose)" opacity="0"></path>
+        <text id="withdrawLabel" x="657" y="650" class="small" opacity="0">Hormone withdrawal</text>
 
-          <path id="progArrow" d="M560 447 C627 455, 665 463, 715 470" fill="none" stroke="#6e557c" stroke-width="4" marker-end="url(#arrowHeadBrown)" opacity="0"></path>
-          <text id="progLabel" x="586" y="474" class="small" opacity="0">Progesterone</text>
-        </g>
+        <text x="900" y="805" class="tiny" fill="#67818a">HyPO-P ovarian demo · v3</text>
       </svg>
     </div>
 
-    <aside class="info-card" id="infoPanel">
+    <aside class="card panel" id="panel">
       <h2 id="infoTitle">Start state</h2>
-      <p id="infoText">This is a late follicular phase teaching view. The dominant follicle is large and peripheral. Use <strong>FSH</strong> first to highlight follicular activity, then use <strong>LH surge</strong> to trigger ovulation and transition to the corpus luteum.</p>
-      <div class="badge-row" id="infoBadges">
+      <p id="infoText">This teaching view starts in the <strong>late follicular phase</strong>. Use <strong>FSH</strong> first to highlight the dominant follicle and estradiol effect on the endometrium. Then use <strong>LH surge / ovulation</strong>, followed by <strong>Corpus Luteum</strong>, then <strong>Luteolysis / Menses</strong>.</p>
+      <div class="badges" id="infoBadges">
         <span class="badge">Late follicular phase</span>
         <span class="badge">Dominant follicle present</span>
       </div>
-      <h3>How to use this demo</h3>
-      <p>Tap the <strong>FSH</strong> label in the pituitary or the FSH button to activate the dominant follicle. Then tap <strong>LH</strong> or the LH button to simulate the <strong>LH surge</strong> and produce ovulation.</p>
+      <p><strong>What changed in this version:</strong> the released oocyte is now directed toward a <strong>fallopian tube / fimbrial pickup</strong>, and the endometrium follows a more rule-based progression: <strong>follicular proliferative → thick pre-luteal midcycle → lush secretory luteal → menstruation</strong>.</p>
       <div class="legend">
-        <div><span class="swatch" style="background:#f5dce9"></span> Dominant follicle</div>
-        <div><span class="swatch" style="background:#f4c95b"></span> Corpus luteum</div>
-        <div><span class="swatch" style="background:#edcfb3"></span> Proliferative endometrium</div>
-        <div><span class="swatch" style="background:#ddb087"></span> Secretory endometrium</div>
+        <div><span class="sw" style="background:#f5dce9"></span> Dominant follicle</div>
+        <div><span class="sw" style="background:#f2c75a"></span> Corpus luteum</div>
+        <div><span class="sw" style="background:#ebcfb0"></span> Follicular functionalis</div>
+        <div><span class="sw" style="background:#c98966"></span> Luteal secretory functionalis</div>
       </div>
+      <div class="build">Build marker: <strong>GitHub v3</strong>. This package is intended for GitHub Pages testing.</div>
     </aside>
   </div>
 </div>
 
-<div class="info-mobile" id="mobileInfo">
-  <button class="close" id="closeMobile">×</button>
-  <div id="mobileInfoInner">
-    <strong>Start state</strong><br>
-    This is a late follicular phase teaching view. Tap FSH first, then LH surge.
-  </div>
+<div class="mobilebox" id="mobileBox">
+  <button id="closeMobile">×</button>
+  <div id="mobileInner"><strong>Start state</strong><br>This teaching view starts in the late follicular phase. Use FSH first, then LH surge / ovulation.</div>
 </div>
 
 <script>
 (function(){
-  const state = {
-    fsh:false,
-    ovulated:false,
-    luteal:false
+  const state = { fsh:false, ovulated:false, luteal:false, menses:false };
+  const $ = id => document.getElementById(id);
+  const infoTitle = $('infoTitle');
+  const infoText = $('infoText');
+  const infoBadges = $('infoBadges');
+  const mobileInner = $('mobileInner');
+
+  const els = {
+    fshLane:$('fshLane'), lhLane:$('lhLane'), fshLaneLabel:$('fshLaneLabel'), lhLaneLabel:$('lhLaneLabel'), lhText:$('lhText'),
+    domFol:$('dominantFollicleCircle'), oocyte:$('oocyte'), rupture:$('ruptureMark'), ovLab:$('ovulationLabel'),
+    relPath:$('releasePath'), relOocyte:$('releasedOocyte'), oocyteLabel:$('oocyteLabel'), corpus:$('corpusLuteum'),
+    eArrow:$('estradiolArrow'), eLabel:$('estradiolLabel'), pArrow:$('progArrow'), pLabel:$('progLabel'),
+    wArrow:$('withdrawArrow'), wLabel:$('withdrawLabel'),
+    endoFol:$('endoFollicular'), endoOv:$('endoOvulatory'), endoLut:$('endoLuteal'), endoMen:$('endoMenstruation'), endoLabel:$('endoStateLabel')
   };
 
-  const infoTitle = document.getElementById('infoTitle');
-  const infoText = document.getElementById('infoText');
-  const infoBadges = document.getElementById('infoBadges');
-  const mobileInfoInner = document.getElementById('mobileInfoInner');
-
-  const fshOrigin = document.getElementById('fshOrigin');
-  const lhOrigin = document.getElementById('lhOrigin');
-  const dominantFollicle = document.getElementById('dominantFollicle');
-  const hypothalamus = document.getElementById('hypothalamus');
-  const hypoText = document.getElementById('hypoText');
-  const corpusLuteum = document.getElementById('corpusLuteum');
-  const btnFSH = document.getElementById('btnFSH');
-  const btnLH = document.getElementById('btnLH');
-  const btnReset = document.getElementById('btnReset');
-  const closeMobile = document.getElementById('closeMobile');
-  const mobileInfo = document.getElementById('mobileInfo');
-
-  const elements = {
-    fshLane: document.getElementById('fshLane'),
-    lhLane: document.getElementById('lhLane'),
-    fshLaneLabel: document.getElementById('fshLaneLabel'),
-    lhLaneLabel: document.getElementById('lhLaneLabel'),
-    dominantFollicleCircle: document.getElementById('dominantFollicleCircle'),
-    ruptureMark: document.getElementById('ruptureMark'),
-    ovulationLabel: document.getElementById('ovulationLabel'),
-    oocyte: document.getElementById('oocyte'),
-    releasedOocyte: document.getElementById('releasedOocyte'),
-    oocyteLabel: document.getElementById('oocyteLabel'),
-    estradiolArrow: document.getElementById('estradiolArrow'),
-    estradiolLabel: document.getElementById('estradiolLabel'),
-    progArrow: document.getElementById('progArrow'),
-    progLabel: document.getElementById('progLabel'),
-    endoThin: document.getElementById('endoThin'),
-    endoThick: document.getElementById('endoThick'),
-    endoSecretory: document.getElementById('endoSecretory'),
-    endoStateLabel: document.getElementById('endoStateLabel'),
-    lhText: document.getElementById('lhText')
-  };
-
-  function setInfo(title, text, badges){
+  function setInfo(title, html, badges){
     infoTitle.textContent = title;
-    infoText.innerHTML = text;
-    infoBadges.innerHTML = (badges || []).map(b => `<span class="badge">${b}</span>`).join('');
-    mobileInfoInner.innerHTML = `<strong>${title}</strong><br>${text}`;
+    infoText.innerHTML = html;
+    infoBadges.innerHTML = badges.map(x => `<span class="badge">${x}</span>`).join('');
+    mobileInner.innerHTML = `<strong>${title}</strong><br>${html}`;
+  }
+
+  function showEndo(which){
+    els.endoFol.style.opacity = which==='fol' ? 1 : 0;
+    els.endoOv.style.opacity = which==='ov' ? 1 : 0;
+    els.endoLut.style.opacity = which==='lut' ? 1 : 0;
+    els.endoMen.style.opacity = which==='men' ? 1 : 0;
+    const labels = {
+      fol:'Follicular proliferative endometrium',
+      ov:'Midcycle thick pre-luteal endometrium',
+      lut:'Lush secretory luteal endometrium',
+      men:'Menstruation: functionalis shedding, basalis remains'
+    };
+    els.endoLabel.textContent = labels[which];
+  }
+
+  function resetAll(){
+    state.fsh = false; state.ovulated = false; state.luteal = false; state.menses = false;
+    els.fshLane.classList.remove('strongArrow');
+    els.lhLane.classList.remove('strongArrow');
+    els.fshLaneLabel.classList.remove('emphasis');
+    els.lhLaneLabel.classList.remove('lhsurge');
+    els.lhText.classList.remove('lhsurge');
+    els.lhLaneLabel.textContent = 'LH';
+    els.domFol.classList.remove('activeStroke');
+    els.rupture.style.opacity = 0; els.ovLab.style.opacity = 0;
+    els.relPath.style.opacity = 0; els.relOocyte.style.opacity = 0; els.oocyteLabel.style.opacity = 0;
+    els.relOocyte.setAttribute('cx','339'); els.relOocyte.setAttribute('cy','126');
+    els.oocyte.style.opacity = 1; els.corpus.style.opacity = 0;
+    els.eArrow.style.opacity = 0; els.eLabel.style.opacity = 0;
+    els.pArrow.style.opacity = 0; els.pLabel.style.opacity = 0;
+    els.wArrow.style.opacity = 0; els.wLabel.style.opacity = 0;
+    showEndo('fol');
+    setInfo('Start state', 'This teaching view starts in the <strong>late follicular phase</strong>. Use <strong>FSH</strong> first to highlight the dominant follicle and estradiol effect on the endometrium. Then use <strong>LH surge / ovulation</strong>, followed by <strong>Corpus Luteum</strong>, then <strong>Luteolysis / Menses</strong>.', ['Late follicular phase','Dominant follicle present']);
   }
 
   function activateFSH(){
-    state.fsh = true;
-    elements.fshLane.classList.add('arrow-strong');
-    elements.fshLaneLabel.classList.add('emphasis');
-    elements.dominantFollicleCircle.classList.add('highlight-stroke','glow');
-    elements.estradiolArrow.style.opacity = 1;
-    elements.estradiolLabel.style.opacity = 1;
-    elements.endoThin.style.opacity = 1;
-    elements.endoThick.style.opacity = .9;
-    elements.endoSecretory.style.opacity = 0;
-    elements.endoStateLabel.textContent = 'Thicker preovulatory proliferative functionalis';
-    setInfo(
-      'FSH activation',
-      'FSH is shown as coming from the <strong>pituitary</strong>. In this demo, selecting FSH highlights the <strong>dominant follicle</strong>, which is the ovarian structure that produces <strong>estradiol</strong> in the late follicular phase.',
-      ['FSH active','Dominant follicle highlighted','Estradiol to endometrium']
-    );
+    state.fsh = true; state.menses = false;
+    els.fshLane.classList.add('strongArrow');
+    els.fshLaneLabel.classList.add('emphasis');
+    els.domFol.classList.add('activeStroke');
+    els.eArrow.style.opacity = 1; els.eLabel.style.opacity = 1;
+    els.wArrow.style.opacity = 0; els.wLabel.style.opacity = 0;
+    showEndo('fol');
+    setInfo('FSH and the dominant follicle', 'FSH is shown as coming from the <strong>pituitary</strong>. It stimulates the <strong>dominant follicle</strong>, which produces <strong>estradiol</strong>. The endometrium responds with a <strong>proliferative</strong> pattern that is lighter, smoother, and moderately thickened.', ['FSH active','Dominant follicle','Estradiol to uterus']);
   }
 
-  function animateRelease(){
-    const oocyte = elements.oocyte;
-    const released = elements.releasedOocyte;
-    released.style.opacity = 1;
-    elements.oocyteLabel.style.opacity = 1;
+  function animateOocyteToTube(){
+    els.relPath.style.opacity = 0.5;
+    els.relOocyte.style.opacity = 1;
+    els.oocyteLabel.style.opacity = 1;
     let t = 0;
-    const start = {x:273, y:131};
-    const end = {x:405, y:96};
+    const start = {x:339, y:126};
+    const end = {x:553, y:114};
     function step(){
-      t += 0.03;
-      if(t>1) t=1;
+      t += 0.028;
+      if(t>1) t = 1;
       const x = start.x + (end.x-start.x)*t;
-      const y = start.y + (end.y-start.y)*t - 16*Math.sin(Math.PI*t);
-      released.setAttribute('cx', x.toFixed(1));
-      released.setAttribute('cy', y.toFixed(1));
+      const y = start.y + (end.y-start.y)*t - 18*Math.sin(Math.PI*t);
+      els.relOocyte.setAttribute('cx', x.toFixed(1));
+      els.relOocyte.setAttribute('cy', y.toFixed(1));
       if(t < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
-    oocyte.style.opacity = 0.2;
   }
 
-  function triggerLH(){
-    if(!state.fsh) {
-      setInfo(
-        'LH requires a follicle-ready state',
-        'Use <strong>FSH</strong> first to activate and highlight the dominant follicle. Then the <strong>LH surge</strong> can trigger ovulation.',
-        ['Use FSH first']
-      );
+  function lhSurge(){
+    if(!state.fsh){
+      setInfo('Use FSH first', 'In this sequence, use <strong>FSH</strong> first to activate and highlight the dominant follicle. Then use the <strong>LH surge</strong> to trigger ovulation.', ['Use FSH first']);
       return;
     }
-    if(state.ovulated) {
-      setInfo(
-        'Ovulation already triggered',
-        'The follicle has already ruptured and the oocyte has been released. The ovarian site is now transitioning into a <strong>corpus luteum</strong>.',
-        ['Ovulation complete','Corpus luteum present']
-      );
+    state.ovulated = true; state.luteal = false; state.menses = false;
+    els.lhLane.classList.add('strongArrow');
+    els.lhLaneLabel.classList.add('lhsurge');
+    els.lhText.classList.add('lhsurge');
+    els.lhLaneLabel.textContent = 'LH surge';
+    els.rupture.style.opacity = 1; els.ovLab.style.opacity = 1;
+    els.oocyte.style.opacity = 0.25;
+    animateOocyteToTube();
+    showEndo('ov');
+    setInfo('LH surge and ovulation', 'The <strong>LH surge</strong> from the <strong>pituitary</strong> triggers <strong>ovulation</strong>. The follicle ruptures and releases the oocyte. Instead of flying into open space, the oocyte is shown moving toward <strong>fimbrial pickup by the fallopian tube</strong>. At midcycle, the endometrium is at its <strong>thickest pre-luteal proliferative state</strong>.', ['LH surge','Ovulation','Tubal pickup','Midcycle endometrium']);
+  }
+
+  function showCorpusLuteum(){
+    if(!state.ovulated){
+      setInfo('Ovulation should come first', 'Use <strong>LH surge / ovulation</strong> before moving to the <strong>corpus luteum</strong> stage.', ['Use LH surge first']);
       return;
     }
-    state.ovulated = true;
-    state.luteal = true;
-    elements.lhLane.classList.add('arrow-strong');
-    elements.lhLaneLabel.classList.add('lhsurge');
-    elements.lhText.classList.add('lhsurge');
-    elements.lhLaneLabel.textContent = 'LH surge';
-    elements.ruptureMark.style.opacity = 1;
-    elements.ovulationLabel.style.opacity = 1;
-    animateRelease();
-    corpusLuteum.style.opacity = 1;
-    elements.progArrow.style.opacity = 1;
-    elements.progLabel.style.opacity = 1;
-    elements.endoThin.style.opacity = 0;
-    elements.endoThick.style.opacity = 0;
-    elements.endoSecretory.style.opacity = 1;
-    elements.endoStateLabel.textContent = 'Secretory functionalis supported by estradiol + progesterone';
-    setInfo(
-      'LH surge and ovulation',
-      'The <strong>LH surge</strong> is shown as coming from the <strong>pituitary</strong>. It triggers <strong>ovulation</strong>, with rupture of the dominant follicle and release of the <strong>oocyte</strong>. The postovulatory follicle becomes the <strong>corpus luteum</strong>, which produces <strong>estradiol and progesterone</strong> to support the endometrium.',
-      ['LH surge','Ovulation','Released oocyte','Corpus luteum','Progesterone added']
-    );
+    state.luteal = true; state.menses = false;
+    els.corpus.style.opacity = 1;
+    els.eArrow.style.opacity = 1; els.eLabel.style.opacity = 1;
+    els.pArrow.style.opacity = 1; els.pLabel.style.opacity = 1;
+    els.wArrow.style.opacity = 0; els.wLabel.style.opacity = 0;
+    showEndo('lut');
+    setInfo('Corpus luteum and luteal support', 'The postovulatory follicle becomes the <strong>corpus luteum</strong>. It produces <strong>estradiol and progesterone</strong>, and the endometrium becomes a <strong>slightly darker, slightly thicker, more lush secretory lining</strong>.', ['Corpus luteum','Estradiol','Progesterone','Secretory endometrium']);
   }
 
-  function resetDemo(){
-    state.fsh = false; state.ovulated = false; state.luteal = false;
-    elements.fshLane.classList.remove('arrow-strong');
-    elements.lhLane.classList.remove('arrow-strong');
-    elements.fshLaneLabel.classList.remove('emphasis');
-    elements.lhLaneLabel.classList.remove('lhsurge');
-    elements.lhText.classList.remove('lhsurge');
-    elements.lhLaneLabel.textContent = 'LH';
-    elements.dominantFollicleCircle.classList.remove('highlight-stroke','glow');
-    elements.ruptureMark.style.opacity = 0;
-    elements.ovulationLabel.style.opacity = 0;
-    elements.oocyte.style.opacity = 1;
-    elements.releasedOocyte.style.opacity = 0;
-    elements.releasedOocyte.setAttribute('cx','273');
-    elements.releasedOocyte.setAttribute('cy','131');
-    elements.oocyteLabel.style.opacity = 0;
-    corpusLuteum.style.opacity = 0;
-    elements.estradiolArrow.style.opacity = 0;
-    elements.estradiolLabel.style.opacity = 0;
-    elements.progArrow.style.opacity = 0;
-    elements.progLabel.style.opacity = 0;
-    elements.endoThin.style.opacity = 1;
-    elements.endoThick.style.opacity = 0;
-    elements.endoSecretory.style.opacity = 0;
-    elements.endoStateLabel.textContent = 'Thin proliferative functionalis';
-    setInfo(
-      'Start state',
-      'This is a late follicular phase teaching view. The dominant follicle is large and peripheral. Use <strong>FSH</strong> first to highlight follicular activity, then use <strong>LH surge</strong> to trigger ovulation and transition to the corpus luteum.',
-      ['Late follicular phase','Dominant follicle present']
-    );
+  function luteolysis(){
+    if(!state.luteal){
+      setInfo('Corpus luteum stage needed first', 'Use <strong>Corpus Luteum</strong> before triggering <strong>luteolysis</strong> and menstruation.', ['Use corpus luteum first']);
+      return;
+    }
+    state.menses = true;
+    els.pArrow.style.opacity = 0; els.pLabel.style.opacity = 0;
+    els.eArrow.style.opacity = 0; els.eLabel.style.opacity = 0;
+    els.wArrow.style.opacity = 1; els.wLabel.style.opacity = 1;
+    showEndo('men');
+    setInfo('Luteolysis and menstruation', 'If pregnancy does not occur, <strong>luteolysis</strong> leads to withdrawal of <strong>estradiol and progesterone</strong>. The <strong>functionalis</strong> breaks down and is shed, while the <strong>basalis</strong> remains.', ['Luteolysis','Hormone withdrawal','Menstruation']);
   }
 
-  function showGnRH(){
-    setInfo(
-      'GnRH from the hypothalamus',
-      '<strong>GnRH</strong> is shown within the <strong>hypothalamus</strong>. It is released toward the <strong>pituitary</strong>, where it stimulates gonadotropin secretion. In later versions, pulsatile versus continuous GnRH can be layered in.',
-      ['Hypothalamus','GnRH release','Pituitary target']
-    );
-  }
+  $('btnFSH').addEventListener('click', activateFSH);
+  $('btnLH').addEventListener('click', lhSurge);
+  $('btnCL').addEventListener('click', showCorpusLuteum);
+  $('btnLuteolysis').addEventListener('click', luteolysis);
+  $('btnReset').addEventListener('click', resetAll);
+  $('fshOrigin').addEventListener('click', activateFSH);
+  $('lhOrigin').addEventListener('click', lhSurge);
+  $('hypothalamus').addEventListener('click', ()=> setInfo('GnRH from the hypothalamus', '<strong>GnRH</strong> is shown inside the <strong>hypothalamus</strong> and directed toward the <strong>pituitary</strong>. Later versions can layer in pulsatile versus continuous GnRH.', ['Hypothalamus','GnRH release','Pituitary target']));
+  $('gnrhText').addEventListener('click', ()=> $('hypothalamus').dispatchEvent(new Event('click')));
+  $('dominantFollicle').addEventListener('click', ()=> setInfo('Dominant follicle', 'This large, peripheral, preovulatory follicle is the major source of <strong>estradiol</strong> before ovulation.', ['Preovulatory follicle','Estradiol source']));
+  $('corpusLuteum').addEventListener('click', ()=> setInfo('Corpus luteum', 'The <strong>corpus luteum</strong> forms from the postovulatory follicle and secretes <strong>progesterone</strong> and <strong>estradiol</strong>.', ['Postovulatory structure','Progesterone source']));
+  $('closeMobile').addEventListener('click', ()=> $('mobileBox').style.display='none');
 
-  function showFollicleInfo(){
-    const title = state.ovulated ? 'Postovulatory site' : 'Dominant follicle';
-    const text = state.ovulated
-      ? 'This site was the <strong>dominant follicle</strong>. After ovulation it transitions into the <strong>corpus luteum</strong>.'
-      : 'The <strong>dominant follicle</strong> is a large, peripheral, preovulatory follicle. It is the main source of <strong>estradiol</strong> before ovulation.';
-    setInfo(title, text, state.ovulated ? ['Ovulation occurred'] : ['Preovulatory follicle','Estradiol source']);
-  }
-
-  btnFSH.addEventListener('click', activateFSH);
-  btnLH.addEventListener('click', triggerLH);
-  btnReset.addEventListener('click', resetDemo);
-  fshOrigin.addEventListener('click', activateFSH);
-  lhOrigin.addEventListener('click', triggerLH);
-  dominantFollicle.addEventListener('click', showFollicleInfo);
-  corpusLuteum.addEventListener('click', () => setInfo('Corpus luteum','The <strong>corpus luteum</strong> forms from the postovulatory follicle and produces <strong>progesterone</strong> and <strong>estradiol</strong>.',['Postovulatory','Progesterone source']));
-  hypothalamus.addEventListener('click', showGnRH);
-  hypoText.addEventListener('click', showGnRH);
-  closeMobile.addEventListener('click', ()=> mobileInfo.style.display='none');
-
-  resetDemo();
+  resetAll();
 })();
 </script>
 </body>
