@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="FIGO HyPO-P">
-<title>FIGO Ovulatory Disorders — HyPO-P v6.5</title>
+<title>FIGO Ovulatory Disorders — HyPO-P v6.6</title>
 <style>
 :root {
   --figo:#007A87;
@@ -3967,7 +3967,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5 contained schematic rebuild */
+/* v6.6 contained schematic rebuild */
 .physiology-body.contained-v60{
   display:grid;
   gap:14px;
@@ -4341,7 +4341,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5 egg reservoir + egg–follicle sequence */
+/* v6.6 egg reservoir + egg–follicle sequence */
 .physiology-toolbar.v61{
   display:flex;justify-content:space-between;align-items:flex-start;gap:14px;
 }
@@ -4504,7 +4504,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5 fix: one FSH and one LH clearly produced by the pituitary */
+/* v6.6 fix: one FSH and one LH clearly produced by the pituitary */
 .gnrh-contained{
   position:relative;
   gap:4px;
@@ -4645,7 +4645,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5: hormones inside organs; arrows show release */
+/* v6.6: hormones inside organs; arrows show release */
 .hypothalamus-node.v63,
 .pituitary-node.v63{
   display:grid;
@@ -4801,7 +4801,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5 refinements */
+/* v6.6 refinements */
 .organ-hormone-chip{
   font-size:12.5px !important;
   padding:5px 12px !important;
@@ -4904,7 +4904,7 @@ button { touch-action: manipulation; }
 }
 
 
-/* v6.5 restore 2-layer endometrium: basalis + functionalis */
+/* v6.6 restore 2-layer endometrium: basalis + functionalis */
 .contained-uterus .uterus-cavity{
   width:158px !important;
   height:94px !important;
@@ -4999,6 +4999,244 @@ button { touch-action: manipulation; }
   }
 }
 
+
+/* v6.6 compact physiology + mobile popup explanation */
+.brain-compartment.v61{
+  min-height:220px !important;
+  padding:24px 12px 12px !important;
+  border-radius:26px !important;
+}
+.brain-node{
+  min-height:54px !important;
+  padding:7px 6px !important;
+  border-radius:12px !important;
+}
+.brain-node strong{
+  font-size:12px !important;
+}
+.organ-hormone-chip{
+  font-size:10.5px !important;
+  padding:3px 8px !important;
+}
+.gnrh-path.v63{
+  min-height:48px !important;
+}
+.gnrh-path.v63 .path-label{
+  font-size:10px !important;
+}
+.gnrh-path.v63 .contained-arrow{
+  font-size:24px !important;
+}
+.pituitary-output-zone.v63{
+  padding-top:110px !important;
+  gap:10px !important;
+}
+.pit-release-lane{
+  min-height:46px !important;
+}
+.release-line{
+  min-width:38px !important;
+}
+.release-arrow{
+  font-size:24px !important;
+}
+.pit-target-label{
+  font-size:9.5px !important;
+}
+.pit-lh-state{
+  font-size:9px !important;
+}
+.ovary-compartment.v61{
+  min-height:410px !important;
+  padding:28px 20px 16px !important;
+}
+.egg-reservoir{
+  width:74% !important;
+}
+.egg-dot{
+  width:11px !important;
+  height:11px !important;
+}
+.egg-dot.selected-egg{
+  width:14px !important;
+  height:14px !important;
+}
+.ovarian-structure.v61{
+  width:64% !important;
+  padding:6px 7px !important;
+}
+.ovarian-function{
+  width:44% !important;
+  padding:6px 7px !important;
+}
+.ovarian-structure strong,
+.ovarian-function strong{
+  font-size:11px !important;
+}
+.ovarian-caption{
+  font-size:8.7px !important;
+}
+.follicle-unit{
+  width:38px !important;
+  height:38px !important;
+  margin:4px auto 2px !important;
+}
+.follicle-ring{
+  width:38px !important;
+  height:38px !important;
+}
+.follicle-egg{
+  width:12px !important;
+  height:12px !important;
+}
+.contained-uterus.v61{
+  padding:24px 12px 10px !important;
+  border-radius:22px !important;
+}
+.contained-uterus .uterus-cavity{
+  width:136px !important;
+  height:78px !important;
+}
+.endometrium-stack{
+  width:96px !important;
+}
+.endo-phase-label{
+  font-size:9.5px !important;
+}
+.uterus-response-label{
+  font-size:9px !important;
+}
+
+/* Mobile popup sits over lower part of screen while graphic remains visible */
+.phys-mobile-popup{
+  display:none;
+}
+@media(max-width:860px){
+  .physiology-detail-card.v61{
+    display:none !important;
+  }
+  .phys-mobile-popup{
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:10px;
+    z-index:9999;
+    background:rgba(255,255,255,.98);
+    border:1px solid #B8D1D5;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(28,43,57,.20);
+    padding:10px 12px 11px;
+    max-height:38vh;
+    overflow:auto;
+    display:none;
+  }
+  .phys-mobile-popup.open{
+    display:block;
+  }
+  .phys-mobile-popup-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .phys-mobile-popup-mode{
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:#6A7D86;
+    margin-bottom:2px;
+  }
+  .phys-mobile-popup-head strong{
+    font-size:15px;
+    color:#1C2B39;
+  }
+  .phys-mobile-popup-close{
+    border:0;
+    background:#F1F5F6;
+    color:#1C2B39;
+    border-radius:999px;
+    width:30px;
+    height:30px;
+    font-size:22px;
+    line-height:1;
+    padding:0;
+  }
+  .phys-mobile-popup-signals{
+    display:flex;
+    gap:5px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .phys-mobile-popup-signals span{
+    display:inline-block;
+    border-radius:999px;
+    padding:3px 7px;
+    font-size:9px;
+    font-weight:800;
+    background:#EAF8F6;
+    color:#007A87;
+    border:1px solid #49C5B6;
+  }
+  .phys-mobile-popup-body{
+    font-size:12px;
+    line-height:1.35;
+    color:#1C2B39;
+  }
+  .phys-mobile-popup-note{
+    margin-top:6px;
+    font-size:10.5px;
+    line-height:1.3;
+    color:#5F7280;
+  }
+  .contained-stage.v61{
+    gap:8px !important;
+  }
+  .brain-compartment.v61{
+    min-height:190px !important;
+    max-width:320px;
+    width:100%;
+    justify-self:center;
+  }
+  .ovary-compartment.v61{
+    min-height:0 !important;
+    max-width:340px;
+    width:100%;
+    justify-self:center;
+  }
+  .ovarian-output-zone.v61,
+  .contained-uterus.v61{
+    max-width:340px;
+    width:100%;
+    justify-self:center;
+  }
+}
+@media(max-width:430px){
+  .brain-compartment.v61{
+    min-height:175px !important;
+  }
+  .brain-node{
+    min-height:48px !important;
+  }
+  .organ-hormone-chip{
+    font-size:10px !important;
+    padding:3px 7px !important;
+  }
+  .ovary-compartment.v61{
+    padding:26px 16px 14px !important;
+  }
+  .ovarian-structure.v61{
+    width:60% !important;
+  }
+  .ovarian-function{
+    width:40% !important;
+  }
+  .contained-uterus .uterus-cavity{
+    width:128px !important;
+    height:74px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -5069,6 +5307,18 @@ button { touch-action: manipulation; }
       <div class="orientation-footnote">Orientation layer · single selection</div>
     </div>
     <div class="phys-demo-collapsed-note" id="physCollapsedNote">Physiology demo hidden. Use the toggle above to show it again.</div>
+    <div class="phys-mobile-popup" id="physMobilePopup" aria-live="polite" aria-hidden="true">
+      <div class="phys-mobile-popup-head">
+        <div>
+          <div class="phys-mobile-popup-mode" id="physMobilePopupMode">Patient explanation</div>
+          <strong id="physMobilePopupTitle">Hypothalamus</strong>
+        </div>
+        <button type="button" id="physMobilePopupClose" class="phys-mobile-popup-close" aria-label="Close explanation">×</button>
+      </div>
+      <div class="phys-mobile-popup-signals" id="physMobilePopupSignals"></div>
+      <div class="phys-mobile-popup-body" id="physMobilePopupBody"></div>
+      <div class="phys-mobile-popup-note" id="physMobilePopupNote"></div>
+    </div>
   </div>
 </section>
 
@@ -7450,5 +7700,78 @@ render();
 </script>
 
 
+
+
+<script>
+(function(){
+  function copyDetailToMobile(){
+    const title = document.getElementById('physDetailTitle');
+    const mode = document.getElementById('physDetailMode');
+    const body = document.getElementById('physDetailBody');
+    const note = document.getElementById('physDetailOutcome');
+    const signals = document.getElementById('physDetailSignals');
+
+    const mt = document.getElementById('physMobilePopupTitle');
+    const mm = document.getElementById('physMobilePopupMode');
+    const mb = document.getElementById('physMobilePopupBody');
+    const mn = document.getElementById('physMobilePopupNote');
+    const ms = document.getElementById('physMobilePopupSignals');
+
+    if(mt && title) mt.textContent = title.textContent;
+    if(mm && mode) mm.textContent = mode.textContent;
+    if(mb && body) mb.textContent = body.textContent;
+    if(mn && note) mn.textContent = note.textContent;
+
+    if(ms){
+      ms.innerHTML = '';
+      if(signals){
+        signals.querySelectorAll('.physiology-signal').forEach(s=>{
+          const x = document.createElement('span');
+          x.textContent = s.textContent;
+          ms.appendChild(x);
+        });
+      }
+    }
+  }
+
+  function openMobilePopup(){
+    if(window.innerWidth > 860) return;
+    const popup = document.getElementById('physMobilePopup');
+    if(!popup) return;
+    copyDetailToMobile();
+    popup.classList.add('open');
+    popup.setAttribute('aria-hidden','false');
+  }
+
+  function closeMobilePopup(){
+    const popup = document.getElementById('physMobilePopup');
+    if(!popup) return;
+    popup.classList.remove('open');
+    popup.setAttribute('aria-hidden','true');
+  }
+
+  const previousRenderV66 = renderPhysiology;
+  renderPhysiology = function(){
+    previousRenderV66();
+    copyDetailToMobile();
+  };
+
+  document.addEventListener('click', function(e){
+    const target = e.target.closest('[data-node]');
+    if(target && target.closest('#physiologyBridge')){
+      setTimeout(openMobilePopup, 0);
+    }
+  });
+
+  const closeBtn = document.getElementById('physMobilePopupClose');
+  if(closeBtn) closeBtn.addEventListener('click', closeMobilePopup);
+
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 860) closeMobilePopup();
+  });
+
+  copyDetailToMobile();
+})();
+</script>
 
 </body></html>
