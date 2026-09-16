@@ -9223,4 +9223,127 @@ render();
 })();
 </script>
 
+
+<style>
+#physiologyBridge .pituitary-origin-row.interactive{
+  cursor:pointer;
+  transition:background .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+#physiologyBridge .pituitary-origin-row.interactive:hover{
+  background:rgba(73,197,182,.12);
+}
+#physiologyBridge .pituitary-origin-row.interactive:focus-visible{
+  outline:2px solid #007A87;
+  outline-offset:2px;
+  border-radius:10px;
+}
+#physiologyBridge .phys-linked-target{
+  box-shadow:0 0 0 3px rgba(0,122,135,.18), 0 10px 22px rgba(0,122,135,.16) !important;
+  border-color:#007A87 !important;
+}
+</style>
+<script>
+(function(){
+  const fshRow = document.querySelector('.fsh-origin-row');
+  const lhRow = document.querySelector('.lh-origin-row');
+
+  function makeInteractive(row, label){
+    if(!row) return;
+    row.classList.add('interactive');
+    row.setAttribute('tabindex','0');
+    row.setAttribute('role','button');
+    row.setAttribute('aria-label', label);
+  }
+
+  makeInteractive(fshRow, 'FSH: activate follicular phase');
+  makeInteractive(lhRow, 'LH: trigger ovulation when the follicle is active');
+
+  function setPhysNode(node){
+    if(typeof physiologyScenario !== 'undefined') physiologyScenario = 'normal';
+    if(typeof physiologyNode !== 'undefined') physiologyNode = node;
+    if(typeof renderPhysiology === 'function') renderPhysiology();
+  }
+
+  function activateFSH(){
+    setPhysNode('follicle');
+  }
+
+  function activateLH(){
+    const current = (typeof physiologyNode !== 'undefined' && physiologyNode) ? physiologyNode : 'hypothalamus';
+    if(current === 'follicle' || current === 'fsh'){
+      setPhysNode('ovulation');
+    }else{
+      setPhysNode('lh');
+    }
+  }
+
+  if(fshRow){
+    fshRow.addEventListener('click', function(e){ e.stopPropagation(); activateFSH(); });
+    fshRow.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activateFSH(); } });
+  }
+  if(lhRow){
+    lhRow.addEventListener('click', function(e){ e.stopPropagation(); activateLH(); });
+    lhRow.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); activateLH(); } });
+  }
+
+  const previousRender = renderPhysiology;
+  renderPhysiology = function(){
+    previousRender();
+    document.querySelectorAll('#physiologyBridge .phys-linked-target').forEach(el=>el.classList.remove('phys-linked-target'));
+
+    const current = (typeof physiologyNode !== 'undefined' && physiologyNode) ? physiologyNode : 'hypothalamus';
+    const uterus = document.querySelector('.contained-uterus.v61');
+    const endoLabel = document.getElementById('endoPhaseLabel');
+    const uterusResponse = document.getElementById('uterusResponseLabel');
+    const follicularOutput = document.getElementById('follicularOutput');
+    const lutealOutput = document.getElementById('lutealOutput');
+    const withdrawalOutput = document.getElementById('withdrawalOutput');
+    const fshLane = document.querySelector('.fsh-lane');
+    const lhLane = document.querySelector('.lh-lane');
+    const pitFSHChip = document.getElementById('pitFSHChip');
+    const pitLHChip = document.getElementById('pitLHChip');
+    const fshTarget = document.getElementById('fshTargetLabel');
+    const lhTarget = document.getElementById('lhTargetLabel');
+    const lhState = document.getElementById('lhStateLabel');
+
+    const deactivateOutputs = ()=>[follicularOutput,lutealOutput,withdrawalOutput].forEach(el=>{ if(el){ el.classList.remove('active-track'); el.classList.add('inactive-track'); } });
+    const clearLanes = ()=>[fshLane,lhLane].forEach(el=>{ if(el) el.classList.remove('hidden-signal','emphasized-signal','surge','lower-level'); });
+
+    if(current === 'follicle'){
+      const follicle = document.querySelector('[data-node="follicle"]');
+      if(follicle) follicle.classList.add('phys-linked-target');
+    }
+
+    if(current === 'lh'){
+      clearLanes();
+      deactivateOutputs();
+      if(pitFSHChip) pitFSHChip.classList.remove('is-emph','is-surge','is-low');
+      if(pitFSHChip) pitFSHChip.classList.add('is-dim');
+      if(pitLHChip) pitLHChip.classList.remove('is-emph','is-low');
+      if(pitLHChip) pitLHChip.classList.add('is-surge');
+      if(fshLane) fshLane.classList.add('hidden-signal');
+      if(lhLane) lhLane.classList.add('emphasized-signal');
+      if(lhTarget) lhTarget.textContent = 'to ovary';
+      if(lhState) lhState.textContent = 'click again after follicle selection for surge';
+      const pit = document.querySelector('[data-node="pituitary"]');
+      if(pit) pit.classList.add('phys-linked-target');
+      if(uterus){ uterus.setAttribute('data-phase','summary'); }
+      if(endoLabel) endoLabel.textContent = 'Summary';
+      if(uterusResponse) uterusResponse.textContent = 'LH is produced in the pituitary. After the follicle is active, the LH surge triggers ovulation.';
+    }
+
+    if(current === 'ovulation'){
+      const ovu = document.querySelector('[data-node="ovulation"]');
+      if(ovu) ovu.classList.add('phys-linked-target');
+    }
+    if(current === 'corpus_luteum'){
+      const cl = document.querySelector('[data-node="corpus_luteum"]');
+      if(cl) cl.classList.add('phys-linked-target');
+    }
+  };
+
+  renderPhysiology();
+})();
+</script>
+
 </body></html>
